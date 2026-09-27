@@ -129,3 +129,109 @@ document.querySelectorAll('#Home .hero_title, #Home p').forEach((text) => {
         text.style.removeProperty('--cursor-opacity')
     })
 })
+
+// Auto-rotate the booking page's photo panel and re-run its progress bar each cycle.
+const bookingGalleryImages = document.querySelectorAll('.booking_gallery_img')
+const galleryProgressBar = document.querySelector('#galleryProgressBar')
+
+if (bookingGalleryImages.length && galleryProgressBar) {
+    let activeGalleryIndex = 0
+
+    const showGalleryImage = (index) => {
+        bookingGalleryImages.forEach((img, imgIndex) => {
+            img.classList.toggle('is-active', imgIndex === index)
+        })
+
+        // Restart the CSS fill animation so it always matches the 5s interval below.
+        galleryProgressBar.classList.remove('is-running')
+        void galleryProgressBar.offsetWidth
+        galleryProgressBar.classList.add('is-running')
+    }
+
+    showGalleryImage(activeGalleryIndex)
+
+    setInterval(() => {
+        activeGalleryIndex = (activeGalleryIndex + 1) % bookingGalleryImages.length
+        showGalleryImage(activeGalleryIndex)
+    }, 5000)
+}
+
+// Handle the booking form: date guardrails, validation, and a demo confirmation summary.
+const bookingForm = document.querySelector('#bookingForm')
+
+if (bookingForm) {
+    const checkInInput = bookingForm.querySelector('#checkIn')
+    const checkOutInput = bookingForm.querySelector('#checkOut')
+    const formError = bookingForm.querySelector('#formError')
+    const bookingSummary = document.querySelector('#bookingSummary')
+    const roomLabels = {
+        'lake-view': 'a Lake View Room',
+        'mountain-view': 'a Mountain View Room',
+        'suite': 'an Alpine Suite',
+        'family': 'a Family Room'
+    }
+
+    // Don't let guests pick a check-in date in the past.
+    const today = new Date().toISOString().split('T')[0]
+    checkInInput.setAttribute('min', today)
+
+    // Keep check-out from landing on or before check-in.
+    checkInInput.addEventListener('change', () => {
+        checkOutInput.setAttribute('min', checkInInput.value)
+        if (checkOutInput.value && checkOutInput.value <= checkInInput.value) {
+            checkOutInput.value = ''
+        }
+    })
+
+    const showError = (message) => {
+        formError.textContent = message
+        formError.hidden = false
+    }
+
+    const hideError = () => {
+        formError.hidden = true
+    }
+
+    const formatDate = (value) => new Date(`${value}T00:00:00`).toLocaleDateString(undefined, {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    })
+
+    bookingForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+        hideError()
+
+        const fullName = bookingForm.fullName.value.trim()
+        const email = bookingForm.email.value.trim()
+        const checkIn = checkInInput.value
+        const checkOut = checkOutInput.value
+        const roomType = bookingForm.roomType.value
+
+        if (!fullName || !email || !checkIn || !checkOut) {
+            showError('Please fill in your name, email, and both dates to continue.')
+            return
+        }
+
+        if (checkOut <= checkIn) {
+            showError('Check-out date must be after the check-in date.')
+            return
+        }
+
+        bookingSummary.querySelector('#summaryName').textContent = fullName
+        bookingSummary.querySelector('#summaryRoom').textContent = roomLabels[roomType] || 'a room'
+        bookingSummary.querySelector('#summaryCheckIn').textContent = formatDate(checkIn)
+        bookingSummary.querySelector('#summaryCheckOut').textContent = formatDate(checkOut)
+
+        bookingForm.hidden = true
+        bookingSummary.hidden = false
+        bookingSummary.setAttribute('tabindex', '-1')
+        bookingSummary.focus()
+    })
+
+    const editButton = bookingSummary.querySelector('#bookingEditBtn')
+    editButton.addEventListener('click', () => {
+        bookingSummary.hidden = true
+        bookingForm.hidden = false
+    })
+}

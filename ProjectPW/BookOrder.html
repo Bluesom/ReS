@@ -1,62 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Book a Stay | Grand Hotel Misurina</title>
-		<link rel="stylesheet" href="./CSS/style.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-	</head>
-	<body class="booking_page">
-		<nav>
-			<div class="container nav_container">
-				<a href="./index.html">
-					<h4>Grand Hotel Misurina</h4>
-				</a>
-				<ul class="nav_menu" id="primary-navigation">
-					<li><a href="./index.html#Home">Explore Hotels</a></li>
-					<li><a href="./index.html#About">Our Story</a></li>
-					<li><a href="./index.html#Deals">Deals &amp; Offers</a></li>
-					<li><a href="./index.html#Destinations">Destinations</a></li>
-				</ul>
-				<button class="nav_toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
-					<i class="fa-solid fa-bars" aria-hidden="true"></i>
-				</button>
-			</div>
-		</nav>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Book a Stay | Grand Hotel Misurina</title>
+        <link rel="stylesheet" href="./CSS/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    </head>
+    <body class="booking_page">
+        <nav>
+            <div class="container nav_container">
+                <a href="./index.html">
+                    <h4>Grand Hotel Misurina</h4>
+                </a>
+                <ul class="nav_menu" id="primary-navigation">
+                    <li><a href="./index.html#Home">Explore Hotels</a></li>
+                    <li><a href="./index.html#About">Our Story</a></li>
+                    <li><a href="./index.html#Deals">Deals &amp; Offers</a></li>
+                    <li><a href="./index.html#Destinations">Destinations</a></li>
+                </ul>
+                <button class="nav_toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </nav>
 
-		<main class="booking_page_main" aria-label="Booking page"></main>
+        <main class="booking_page_main" aria-label="Booking page">
+            <!-- Short intro banner explaining the booking request flow -->
+            <section class="booking_hero">
+                <div class="container">
+                    <p class="about_kicker">Reserve Your Stay</p>
+                    <h1>Book Your Room</h1>
+                    <p>Tell us your dates and preferences below, and our guest relations team will confirm availability by email.</p>
+                </div>
+            </section>
 
-		<footer class="site_footer">
-			<div class="container footer_container">
-				<div class="footer_brand">
-					<h2>Grand Hotel Misurina</h2>
-					<p>Where the lake meets the peaks, a quieter kind of escape begins.</p>
-				</div>
-				<div class="footer_contact">
-					<p class="footer_label">Contact</p>
-					<h3>Elena Rossi</h3>
-					<p class="footer_role">Guest Relations <span>Sample contact</span></p>
-					<a class="footer_email" href="mailto:hello@example.com">hello@example.com</a>
-				</div>
-				<div class="footer_location">
-					<p class="footer_label">Find us</p>
-					<address>Via Monte Piana, 21<br>32041 Misurina (Auronzo di Cadore), Belluno, Italy</address>
-					<iframe
-						class="footer_map"
-						title="Map showing Grand Hotel Misurina at Via Monte Piana 21"
-						src="https://www.openstreetmap.org/export/embed.html?bbox=12.2436311%2C46.5794138%2C12.2636311%2C46.5894138&amp;layer=mapnik&amp;marker=46.5844138%2C12.2536311"
-						loading="lazy">
-					</iframe>
-					<a class="footer_map_link" href="https://www.openstreetmap.org/?mlat=46.5844138&amp;mlon=12.2536311#map=16/46.5844138/12.2536311" target="_blank" rel="noreferrer">Open in OpenStreetMap</a>
-				</div>
-			</div>
-			<div class="container footer_bottom">
-				<p>Student project for educational purposes. Not affiliated with or endorsed by Grand Hotel Misurina.</p>
-				<p>Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a></p>
-			</div>
-		</footer>
+            <!-- Reservation request form and its confirmation summary -->
+            <section class="booking_form_section">
+                <div class="container booking_form_container">
+                    <form class="booking_form" id="bookingForm" novalidate>
+                        <div class="form_grid">
+                            <div class="form_field">
+                                <label for="fullName">Full name</label>
+                                <input type="text" id="fullName" name="fullName" autocomplete="name" required>
+                            </div>
+                            <div class="form_field">
+                                <label for="email">Email address</label>
+                                <input type="email" id="email" name="email" autocomplete="email" required>
+                            </div>
+                            <div class="form_field">
+                                <label for="phone">Phone number</label>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel">
+                            </div>
+                            <div class="form_field">
+                                <label for="guests">Guests</label>
+                                <select id="guests" name="guests">
+                                    <option value="1">1 guest</option>
+                                    <option value="2" selected>2 guests</option>
+                                    <option value="3">3 guests</option>
+                                    <option value="4">4 guests</option>
+                                    <option value="5+">5+ guests</option>
+                                </select>
+                            </div>
+                            <div class="form_field">
+                                <label for="checkIn">Check-in</label>
+                                <input type="date" id="checkIn" name="checkIn" required>
+                            </div>
+                            <div class="form_field">
+                                <label for="checkOut">Check-out</label>
+                                <input type="date" id="checkOut" name="checkOut" required>
+                            </div>
+                            <div class="form_field form_field-full">
+                                <label for="roomType">Room type</label>
+                                <select id="roomType" name="roomType">
+                                    <option value="lake-view">Lake View Room</option>
+                                    <option value="mountain-view">Mountain View Room</option>
+                                    <option value="suite">Alpine Suite</option>
+                                    <option value="family">Family Room</option>
+                                </select>
+                            </div>
+                            <div class="form_field form_field-full">
+                                <label for="requests">Special requests</label>
+                                <textarea id="requests" name="requests" rows="4" placeholder="Let us know about any special requests, like a late check-in or a specific view."></textarea>
+                            </div>
+                        </div>
 
-		<script src="./JS/main.js"></script>
-	</body>
+                        <p class="form_error" id="formError" role="alert" hidden></p>
+
+                        <button type="submit" class="btn btn-primary booking_submit">
+                            <span>Request reservation</span>
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                    </form>
+
+                    <!-- Auto-rotating photos of the hotel and its surroundings, sized to match the form -->
+                    <div class="booking_gallery" aria-label="Photos of Grand Hotel Misurina and the surrounding Dolomites">
+                        <div class="booking_gallery_frame">
+                            <img src="./Assets/818390604.jpg" alt="Grand Hotel Misurina beside Lake Misurina" class="booking_gallery_img is-active" loading="lazy">
+                            <img src="./Assets/818390667.jpg" alt="Grand Hotel Misurina exterior in the Dolomites" class="booking_gallery_img" loading="lazy">
+                            <img src="./Assets/820756719.jpg" alt="Lakeside setting of Grand Hotel Misurina" class="booking_gallery_img" loading="lazy">
+                            <img src="./Assets/destination-lago-braies.jpg" alt="Turquoise waters of Lago di Braies near the hotel" class="booking_gallery_img" loading="lazy">
+                            <img src="./Assets/destination-tre-cime.jpg" alt="The peaks of Tre Cime di Lavaredo" class="booking_gallery_img" loading="lazy">
+                        </div>
+                        <div class="booking_gallery_progress" aria-hidden="true">
+                            <span class="booking_gallery_progress_bar" id="galleryProgressBar"></span>
+                        </div>
+                    </div>
+
+                    <!-- Shown after a valid request; this is a demo confirmation, no email is actually sent -->
+                    <aside class="booking_summary" id="bookingSummary" hidden aria-live="polite">
+                        <div class="booking_summary_icon"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></div>
+                        <h2>Request received</h2>
+                        <p>Thank you, <span id="summaryName"></span>. We've noted your request for <span id="summaryRoom"></span> from <span id="summaryCheckIn"></span> to <span id="summaryCheckOut"></span>. Our guest relations team will follow up by email to confirm availability.</p>
+                        <button type="button" class="btn" id="bookingEditBtn">Edit request</button>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site_footer">
+            <div class="container footer_container">
+                <div class="footer_brand">
+                    <h2>Grand Hotel Misurina</h2>
+                    <p>Where the lake meets the peaks, a quieter kind of escape begins.</p>
+                </div>
+                <div class="footer_contact">
+                    <p class="footer_label">Contact</p>
+                    <h3>Elena Rossi</h3>
+                    <p class="footer_role">Guest Relations <span>Sample contact</span></p>
+                    <a class="footer_email" href="mailto:hello@example.com">hello@example.com</a>
+                </div>
+                <div class="footer_location">
+                    <p class="footer_label">Find us</p>
+                    <address>Via Monte Piana, 21<br>32041 Misurina (Auronzo di Cadore), Belluno, Italy</address>
+                    <iframe
+                        class="footer_map"
+                        title="Map showing Grand Hotel Misurina at Via Monte Piana 21"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=12.2436311%2C46.5794138%2C12.2636311%2C46.5894138&amp;layer=mapnik&amp;marker=46.5844138%2C12.2536311"
+                        loading="lazy">
+                    </iframe>
+                    <a class="footer_map_link" href="https://www.openstreetmap.org/?mlat=46.5844138&amp;mlon=12.2536311#map=16/46.5844138/12.2536311" target="_blank" rel="noreferrer">Open in OpenStreetMap</a>
+                </div>
+            </div>
+            <div class="container footer_bottom">
+                <p>Student project for educational purposes. Not affiliated with or endorsed by Grand Hotel Misurina.</p>
+                <p>Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a></p>
+            </div>
+        </footer>
+
+        <script src="./JS/main.js"></script>
+    </body>
 </html>
