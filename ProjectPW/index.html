@@ -3,42 +3,171 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lionheart Hotels</title>
+        <title>Grand Hotel Misurina</title>
 
-        <!-- Link to the external CSS file -->
-        <link rel="stylesheet" href="style.css">
+        <!-- Site styles and icon library -->
+        <link rel="stylesheet" href="./CSS/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     </head>
 
     <body>
-        <div class="navbar">
-            <a href="#"><h2 class="logo">Lionheart Hotels</h2></a>
-            <ul class="nav-links">
-                <li><a href="#Home">Explore Hotels</a></li>
-                <li><a href="#Deals">Deals & Offers</a></li>
-                <li><a href="#Destinations">Destinations</a></li>
-            </ul>
-        </div>
         <main>
             <header>
-                <section id="Home">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Hotel Image">
-                    <h1>Lionheart Hotels</h1>
-                    <p>Discover the perfect stay with our exclusive hotel experiences.</p>
-                    <button>Book Now</button>
+                <!-- Navigation Bar -->
+                <nav>
+                    <div class="container nav_container">
+                        <a href="#">
+                            <h4>Grand Hotel Misurina</h4>
+                        </a>
+                        <ul class="nav_menu" id="primary-navigation">
+                            <li><a href="#Home">Explore Hotels</a></li>
+                            <li><a href="#About">Our Story</a></li>
+                            <li><a href="#Deals">Deals & Offers</a></li>
+                            <li><a href="#Destinations">Destinations</a></li>
+                        </ul>
+                        <button class="nav_toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+                            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </nav>
+                <!-- Hero content and booking CTA -->
+                <div class="container header_container">
+                    <section id="Home">
+                        <h1 class="hero_title">Grand Hotel Misurina</h1>
+                        <p>Set beside Lake Misurina and framed by the Dolomites, Grand Hotel Misurina puts alpine scenery at your doorstep. Explore mountain trails and lakeside views, then return to a peaceful retreat beneath the peaks.</p>
+                        <a class="btn btn-primary hero_cta" href="./BookOrder.html">
+                            <span class="hero_cta_body">Book Now</span>
+                            <span class="hero_cta_icon" aria-hidden="true"><i class="fa-solid fa-location-arrow"></i></span>
+                        </a>
+                    </section>
+                </div>
+            </header>
+                <!-- Hotel story and photo gallery -->
+                <section class="about_section" id="About">
+                    <div class="container about_container">
+                        <div class="about_copy">
+                            <p class="about_kicker">Our Story</p>
+                            <h2>Rooted in the Dolomites</h2>
+                            <p>Set beside Lake Misurina, Grand Hotel Misurina is part of the area's tradition of alpine hospitality. Its lakeside setting offers a peaceful base for discovering the surrounding peaks, trails, and mountain villages.</p>
+                        </div>
+                        <div class="about_gallery" role="group" aria-label="Photographs of the hotel and its alpine setting">
+                            <button class="about_gallery_item" type="button" aria-label="Toggle enlarged view of hotel photo 1" aria-pressed="false">
+                                <img src="./Assets/818390604.jpg" alt="" loading="lazy">
+                            </button>
+                            <button class="about_gallery_item" type="button" aria-label="Toggle enlarged view of hotel photo 2" aria-pressed="false">
+                                <img src="./Assets/818390667.jpg" alt="" loading="lazy">
+                            </button>
+                            <button class="about_gallery_item" type="button" aria-label="Toggle enlarged view of hotel photo 3" aria-pressed="false">
+                                <img src="./Assets/820756719.jpg" alt="" loading="lazy">
+                            </button>
+                        </div>
+                    </div>
                 </section>
+                <!-- Deals and destination content -->
                 <section id="Deals">
-                    <h1>Deals & Offers</h1>
-                    <p>Check out our latest deals and special offers.</p>
+                    <div class="container offers_container">
+                        <div class="offers_heading">
+                            <h1>Deals &amp; Offers</h1>
+                        </div>
+                        <div class="offers_empty" role="status">
+                            <span class="offers_icon" aria-hidden="true"><i class="fa-solid fa-ticket"></i></span>
+                            <div>
+                                <h2>No active offers right now</h2>
+                                <p>There are no promotions available at the moment. Please check back later.</p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <section id="Destinations">
-                    <h1>Destinations</h1>
-                    <p>Explore our most popular travel destinations.</p>
+                    <div class="container destinations_container">
+                        <div class="destinations_heading">
+                            <p>Explore the Dolomites</p>
+                            <h1>Destinations</h1>
+                        </div>
+                        <div class="destination_carousel" role="region" aria-roledescription="carousel" aria-label="Destinations near Grand Hotel Misurina">
+                            <article class="destination_slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                                <figure class="destination_media">
+                                    <img src="./Assets/destination-lago-braies.jpg" alt="Wooden boats on turquoise Lago di Braies beneath the Dolomite peaks" loading="eager">
+                                    <figcaption><a href="https://unsplash.com/photos/wooden-boat-on-lago-di-braies-O453M2Liufs" target="_blank" rel="noreferrer">Photo: Luca Bravo / Unsplash</a></figcaption>
+                                </figure>
+                                <div class="destination_copy" aria-live="polite">
+                                    <p class="destination_meta"><span>01</span> South Tyrol, Italy</p>
+                                    <h2>Lago di Braies</h2>
+                                    <p>Wooden boats glide across turquoise water beneath forested slopes and limestone peaks. Walk the lakeshore for a quieter view of the Dolomites.</p>
+                                </div>
+                            </article>
+                            <article class="destination_slide" role="group" aria-roledescription="slide" aria-label="2 of 3" hidden>
+                                <figure class="destination_media">
+                                    <img src="./Assets/destination-alpe-siusi.jpg" alt="Jagged Seceda peaks above the alpine meadows of Alpe di Siusi" loading="lazy">
+                                    <figcaption><a href="https://unsplash.com/photos/seceda-mountain-peaks-in-the-dolomites-p7S6AxykCl0" target="_blank" rel="noreferrer">Photo: Michiel Ronde / Unsplash</a></figcaption>
+                                </figure>
+                                <div class="destination_copy" aria-live="polite">
+                                    <p class="destination_meta"><span>02</span> South Tyrol, Italy</p>
+                                    <h2>Alpe di Siusi</h2>
+                                    <p>Open alpine meadows stretch beneath the jagged Sassolungo peaks. The high plateau offers a broad, peaceful perspective on the Dolomites.</p>
+                                </div>
+                            </article>
+                            <article class="destination_slide" role="group" aria-roledescription="slide" aria-label="3 of 3" hidden>
+                                <figure class="destination_media">
+                                    <img src="./Assets/destination-tre-cime.jpg" alt="The three distinctive peaks of Tre Cime di Lavaredo" loading="lazy">
+                                    <figcaption><a href="https://unsplash.com/photos/tre-cime-di-lavaredo-italy-BC8a5ui_qYk" target="_blank" rel="noreferrer">Photo: Jovana Askrabic / Unsplash</a></figcaption>
+                                </figure>
+                                <div class="destination_copy" aria-live="polite">
+                                    <p class="destination_meta"><span>03</span> Sexten Dolomites, Italy</p>
+                                    <h2>Tre Cime di Lavaredo</h2>
+                                    <p>Three limestone towers rise above celebrated high-mountain trails. Follow the paths for changing views of one of the Dolomites' most recognizable silhouettes.</p>
+                                </div>
+                            </article>
+                            <div class="destination_controls">
+                                <button class="destination_arrow destination_previous" type="button" aria-label="Previous destination">
+                                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                                </button>
+                                <div class="destination_indicators" role="group" aria-label="Choose a destination">
+                                    <button class="destination_dot is-active" type="button" aria-label="Show Lago di Braies" aria-current="true"></button>
+                                    <button class="destination_dot" type="button" aria-label="Show Alpe di Siusi" aria-current="false"></button>
+                                    <button class="destination_dot" type="button" aria-label="Show Tre Cime di Lavaredo" aria-current="false"></button>
+                                </div>
+                                <button class="destination_arrow destination_next" type="button" aria-label="Next destination">
+                                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </section>
-            </header>
         </main>
 
-        <footer>
-            <p>&copy; 2024 Lionheart Hotels. All rights reserved.</p>
+        <!-- Contact details, hotel location, and closing note -->
+        <footer class="site_footer">
+            <div class="container footer_container">
+                <div class="footer_brand">
+                    <h2>Grand Hotel Misurina</h2>
+                    <p>Where the lake meets the peaks, a quieter kind of escape begins.</p>
+                </div>
+                <div class="footer_contact">
+                    <p class="footer_label">Contact</p>
+                    <h3>Elena Rossi</h3>
+                    <p class="footer_role">Guest Relations <span>Sample contact</span></p>
+                    <a class="footer_email" href="mailto:hello@example.com">hello@example.com</a>
+                </div>
+                <div class="footer_location">
+                    <p class="footer_label">Find us</p>
+                    <address>Via Monte Piana, 21<br>32041 Misurina (Auronzo di Cadore), Belluno, Italy</address>
+                    <iframe
+                        class="footer_map"
+                        title="Map showing Grand Hotel Misurina at Via Monte Piana 21"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=12.2436311%2C46.5794138%2C12.2636311%2C46.5894138&amp;layer=mapnik&amp;marker=46.5844138%2C12.2536311"
+                        loading="lazy">
+                    </iframe>
+                    <a class="footer_map_link" href="https://www.openstreetmap.org/?mlat=46.5844138&amp;mlon=12.2536311#map=16/46.5844138/12.2536311" target="_blank" rel="noreferrer">Open in OpenStreetMap</a>
+                </div>
+            </div>
+            <div class="container footer_bottom">
+                <p>Student project for educational purposes. Not affiliated with or endorsed by Grand Hotel Misurina.</p>
+                <p>Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a></p>
+            </div>
         </footer>
+
+        <!-- javascript -->
+        <script src="./JS/main.js"></script>
     </body>
 </html>
