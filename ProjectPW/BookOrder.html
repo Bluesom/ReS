@@ -25,7 +25,191 @@
 			</div>
 		</nav>
 
-		<main class="booking_page_main" aria-label="Booking page"></main>
+		<main class="booking_page_main" aria-label="Booking page">
+			<!-- Reservation intro banner -->
+			<section class="reservation_hero">
+				<div class="container reservation_hero_container">
+					<p class="reservation_kicker">Book Your Stay</p>
+					<h1>Reserve a room at Grand Hotel Misurina</h1>
+					<p>Pick a room, set your dates, and we'll hold your place beside the lake. We'll confirm availability and final pricing by email.</p>
+				</div>
+			</section>
+
+			<!-- Reservation form and live summary -->
+			<section class="reservation_section" id="reservation-section">
+				<div class="container reservation_layout">
+					<form class="reservation_form" id="reservation-form" novalidate>
+						<div class="form_block">
+							<h2><span class="form_step">1</span> Choose your room</h2>
+							<div class="room_options" role="radiogroup" aria-label="Room type">
+								<button type="button" class="room_option" data-room="Lake View Room" data-price="180">
+									<span class="room_option_icon" aria-hidden="true"><i class="fa-solid fa-water"></i></span>
+									<span class="room_option_body">
+										<span class="room_option_name">Lake View Room</span>
+										<span class="room_option_detail">1 king bed &middot; up to 2 guests</span>
+									</span>
+									<span class="room_option_price">&euro;180<small>/night</small></span>
+								</button>
+								<button type="button" class="room_option" data-room="Dolomite Suite" data-price="260">
+									<span class="room_option_icon" aria-hidden="true"><i class="fa-solid fa-mountain-sun"></i></span>
+									<span class="room_option_body">
+										<span class="room_option_name">Dolomite Suite</span>
+										<span class="room_option_detail">1 king bed, sitting area &middot; up to 3 guests</span>
+									</span>
+									<span class="room_option_price">&euro;260<small>/night</small></span>
+								</button>
+								<button type="button" class="room_option" data-room="Alpine Family Room" data-price="220">
+									<span class="room_option_icon" aria-hidden="true"><i class="fa-solid fa-people-roof"></i></span>
+									<span class="room_option_body">
+										<span class="room_option_name">Alpine Family Room</span>
+										<span class="room_option_detail">2 queen beds &middot; up to 4 guests</span>
+									</span>
+									<span class="room_option_price">&euro;220<small>/night</small></span>
+								</button>
+							</div>
+							<p class="form_error" id="room-error" role="alert" hidden>Please select a room to continue.</p>
+						</div>
+
+						<div class="form_block">
+							<h2><span class="form_step">2</span> Your dates</h2>
+							<div class="form_row">
+								<label for="checkin">Check-in
+									<input type="date" id="checkin" name="checkin" required>
+								</label>
+								<label for="checkout">Check-out
+									<input type="date" id="checkout" name="checkout" required>
+								</label>
+								<label for="guests">Guests
+									<select id="guests" name="guests">
+										<option>1 guest</option>
+										<option selected>2 guests</option>
+										<option>3 guests</option>
+										<option>4 guests</option>
+									</select>
+								</label>
+							</div>
+							<p class="form_error" id="dates-error" role="alert" hidden>Check-out must be after check-in.</p>
+						</div>
+
+						<div class="form_block">
+							<h2><span class="form_step">3</span> Your details</h2>
+							<div class="form_row">
+								<label for="fullname">Full name
+									<input type="text" id="fullname" name="fullname" autocomplete="name" required>
+								</label>
+							</div>
+							<div class="form_row">
+								<label for="email">Email
+									<input type="email" id="email" name="email" autocomplete="email" required>
+								</label>
+								<label for="phone">Phone
+									<input type="tel" id="phone" name="phone" autocomplete="tel" required>
+								</label>
+							</div>
+							<div class="form_row">
+								<label class="form_row_full" for="notes">Special requests <span>Optional</span>
+									<textarea id="notes" name="notes" rows="3" placeholder="Late arrival, dietary needs, an anniversary..."></textarea>
+								</label>
+							</div>
+						</div>
+
+						<div class="form_block">
+							<h2><span class="form_step">4</span> Payment method</h2>
+							<div class="payment_options" role="radiogroup" aria-label="Payment method">
+								<button type="button" class="room_option" data-payment="card">
+									<span class="room_option_icon" aria-hidden="true"><i class="fa-solid fa-credit-card"></i></span>
+									<span class="room_option_body">
+										<span class="room_option_name">Credit / Debit Card</span>
+										<span class="room_option_detail">Visa, Mastercard, Amex</span>
+									</span>
+								</button>
+								<button type="button" class="room_option" data-payment="transfer">
+									<span class="room_option_icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+									<span class="room_option_body">
+										<span class="room_option_name">Bank Transfer</span>
+										<span class="room_option_detail">Details sent after booking</span>
+									</span>
+								</button>
+								<button type="button" class="room_option" data-payment="hotel">
+									<span class="room_option_icon" aria-hidden="true"><i class="fa-solid fa-hotel"></i></span>
+									<span class="room_option_body">
+										<span class="room_option_name">Pay at the Hotel</span>
+										<span class="room_option_detail">Settle the balance on arrival</span>
+									</span>
+								</button>
+							</div>
+							<p class="form_error" id="payment-error" role="alert" hidden>Please choose a payment method.</p>
+
+							<div class="card_fields" id="card-fields" hidden>
+								<div class="form_row">
+									<label class="form_row_full" for="card-name">Name on card
+										<input type="text" id="card-name" name="card-name" autocomplete="cc-name">
+									</label>
+								</div>
+								<div class="form_row">
+									<label for="card-number">Card number
+										<input type="text" id="card-number" name="card-number" inputmode="numeric" placeholder="4242 4242 4242 4242" maxlength="19" autocomplete="cc-number">
+									</label>
+									<label for="card-expiry">Expiry
+										<input type="text" id="card-expiry" name="card-expiry" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp">
+									</label>
+									<label for="card-cvv">CVV
+										<input type="text" id="card-cvv" name="card-cvv" inputmode="numeric" placeholder="123" maxlength="4" autocomplete="cc-csc">
+									</label>
+								</div>
+								<p class="card_fields_note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Demo form only &mdash; no real payment is processed and no card details are stored or sent anywhere.</p>
+							</div>
+						</div>
+
+						<div class="reservation_submit_row">
+							<button type="submit" class="btn btn-primary reservation_submit">Request Reservation</button>
+							<p class="reservation_submit_note">This is a demo booking flow &mdash; no real charge will be made.</p>
+						</div>
+					</form>
+
+					<aside class="reservation_summary" aria-label="Reservation summary">
+						<h2>Your stay</h2>
+						<dl class="summary_list">
+							<div>
+								<dt>Room</dt>
+								<dd id="summary-room">Not selected yet</dd>
+							</div>
+							<div>
+								<dt>Dates</dt>
+								<dd id="summary-dates">Add your check-in and check-out</dd>
+							</div>
+							<div>
+								<dt>Nights</dt>
+								<dd id="summary-nights">&ndash;</dd>
+							</div>
+							<div>
+								<dt>Guests</dt>
+								<dd id="summary-guests">2 guests</dd>
+							</div>
+							<div>
+								<dt>Payment</dt>
+								<dd id="summary-payment">Not selected yet</dd>
+							</div>
+						</dl>
+						<div class="summary_total">
+							<span>Estimated total</span>
+							<strong id="summary-total">&euro;0</strong>
+						</div>
+						<p class="summary_note">Rates shown are indicative. A confirmation with final pricing will follow by email.</p>
+					</aside>
+				</div>
+
+				<!-- Confirmation state, shown after a reservation request is sent -->
+				<div class="reservation_confirmation" id="reservation-confirmation" hidden>
+					<span class="confirmation_icon" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+					<h2>Reservation received</h2>
+					<p>Thank you, <span id="confirmation-name"></span>. We've noted your request for <strong id="confirmation-room"></strong>, <span id="confirmation-nights"></span>, with <span id="confirmation-payment"></span> selected as the payment method. A member of our team will confirm availability by email within 24 hours.</p>
+					<p class="confirmation_reference">Reference <strong id="confirmation-code"></strong></p>
+					<p class="confirmation_demo_note">Demo flow only &mdash; no real payment was charged.</p>
+					<a href="./index.html" class="btn confirmation_back">Back to home</a>
+				</div>
+			</section>
+		</main>
 
 		<footer class="site_footer">
 			<div class="container footer_container">

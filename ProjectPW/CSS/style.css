@@ -661,6 +661,403 @@ header {
     }
 }
 
+/* ================== RESERVATION PAGE (BookOrder.html) =============== */
+
+.reservation_hero {
+    padding: 9rem 0 3rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.reservation_hero_container {
+    max-width: 40rem;
+}
+
+.reservation_kicker {
+    margin-bottom: 0.8rem;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.reservation_hero h1 {
+    margin-bottom: 1rem;
+    font-size: 2.6rem;
+}
+
+.reservation_hero p {
+    color: var(--color-light);
+    max-width: 36rem;
+}
+
+.reservation_section {
+    padding: 4.5rem 0 6rem;
+}
+
+.reservation_layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 3rem;
+}
+
+.reservation_form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.form_block h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+    font-size: 1.3rem;
+    text-align: left;
+}
+
+.form_step {
+    display: grid;
+    place-items: center;
+    flex: 0 0 1.9rem;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.room_options,
+.payment_options {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.payment_options {
+    margin-bottom: 1rem;
+}
+
+.room_option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.15rem;
+    border: 1px solid rgba(40, 72, 60, 0.18);
+    border-radius: 4px;
+    background: var(--color-white);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+}
+
+.room_option:hover,
+.room_option:focus-visible {
+    border-color: var(--color-bg2);
+}
+
+.room_option:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.room_option.is-selected {
+    border-color: var(--color-danger);
+    background: rgba(169, 104, 82, 0.08);
+    box-shadow: 0 6px 16px rgba(18, 35, 28, 0.1);
+}
+
+.room_option_icon {
+    display: grid;
+    flex: 0 0 3rem;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--color-bg1);
+    color: var(--color-primary);
+    font-size: 1.1rem;
+}
+
+.room_option.is-selected .room_option_icon {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.room_option_body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.room_option_name {
+    color: var(--color-black);
+    font-weight: 500;
+}
+
+.room_option_detail {
+    color: var(--color-bg2);
+    font-size: 0.85rem;
+}
+
+.room_option_price {
+    flex: 0 0 auto;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.room_option_price small {
+    color: var(--color-bg2);
+    font-weight: 400;
+    font-size: 0.7rem;
+}
+
+.form_row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form_row:last-child {
+    margin-bottom: 0;
+}
+
+.form_row_full {
+    grid-column: 1 / -1;
+}
+
+.form_block label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.form_block label span {
+    color: var(--color-bg2);
+    font-weight: 400;
+}
+
+.form_block input,
+.form_block select,
+.form_block textarea {
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(40, 72, 60, 0.22);
+    border-radius: 4px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font: inherit;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.form_block textarea {
+    resize: vertical;
+}
+
+.form_block input:focus-visible,
+.form_block select:focus-visible,
+.form_block textarea:focus-visible {
+    outline: 0;
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 3px rgba(169, 104, 82, 0.15);
+}
+
+.form_error {
+    margin-top: 0.85rem;
+    color: var(--color-danger);
+    font-size: 0.85rem;
+}
+
+.card_fields {
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    border: 1px dashed rgba(40, 72, 60, 0.28);
+    border-radius: 4px;
+    background: var(--color-bg1);
+}
+
+.card_fields_note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    color: var(--color-bg2);
+    font-size: 0.78rem;
+}
+
+.card_fields_note i {
+    margin-top: 0.15rem;
+    color: var(--color-primary);
+}
+
+.reservation_submit_row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+}
+
+.reservation_submit_note {
+    color: var(--color-bg2);
+    font-size: 0.8rem;
+}
+
+.confirmation_demo_note {
+    margin-top: 0.5rem;
+    color: var(--color-bg2);
+    font-size: 0.8rem;
+}
+
+.reservation_submit {
+    align-self: flex-start;
+    width: auto;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    transition: background-color 250ms ease, color 250ms ease, box-shadow 250ms ease, transform 200ms ease;
+}
+
+.reservation_submit:hover,
+.reservation_submit:focus-visible {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgba(18, 35, 28, 0.3);
+    transform: translateY(-2px);
+}
+
+.reservation_submit:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.reservation_summary {
+    position: sticky;
+    top: 7rem;
+    padding: 2rem;
+    border-radius: 4px;
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.reservation_summary h2 {
+    margin-bottom: 1.5rem;
+    color: var(--color-white);
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.summary_list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(245, 242, 233, 0.2);
+}
+
+.summary_list > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.summary_list dt {
+    color: var(--color-light);
+    font-size: 0.85rem;
+}
+
+.summary_list dd {
+    color: var(--color-white);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+.summary_total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.summary_total strong {
+    font-size: 1.6rem;
+    color: var(--color-accent);
+}
+
+.summary_note {
+    color: var(--color-light);
+    font-size: 0.78rem;
+}
+
+.reservation_confirmation {
+    max-width: 34rem;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.confirmation_icon {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: var(--color-success);
+    color: var(--color-white);
+    font-size: 1.4rem;
+}
+
+.reservation_confirmation h2 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.reservation_confirmation p {
+    color: var(--color-black);
+}
+
+.confirmation_reference {
+    margin-top: 1rem;
+    color: var(--color-primary);
+}
+
+.confirmation_back {
+    display: inline-block;
+    width: auto;
+    margin-top: 2rem;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    transition: background-color 250ms ease, box-shadow 250ms ease, transform 200ms ease;
+}
+
+.confirmation_back:hover,
+.confirmation_back:focus-visible {
+    background: var(--color-danger);
+    color: var(--color-white);
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgba(18, 35, 28, 0.28);
+    transform: translateY(-2px);
+}
+
+.confirmation_back:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
 /* Tablet and phone layout adjustments */
 @media (max-width: 1080px) {
     :root {
@@ -681,6 +1078,14 @@ header {
 
     .about_container {
         gap: 2.5rem;
+    }
+
+    .reservation_layout {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation_summary {
+        position: static;
     }
 }
 
@@ -862,6 +1267,22 @@ header {
         padding: 1.5rem 5%;
         text-align: center;
     }
+
+    .reservation_hero {
+        padding: 7rem 0 2.5rem;
+    }
+
+    .reservation_hero h1 {
+        font-size: 2.1rem;
+    }
+
+    .reservation_section {
+        padding: 3rem 0 4rem;
+    }
+
+    .reservation_submit {
+        width: 100%;
+    }
 }
 
 @media (max-width: 420px) {
@@ -893,133 +1314,10 @@ header {
         height: 18rem;
     }
 
-
-/* Footer identity, sample contact, and embedded hotel map */
-.site_footer {
-    padding: 3.5rem 0 1.25rem;
-    background: var(--color-primary);
-    color: var(--color-white);
-    text-align: left;
-}
-
-.footer_container {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1.2fr);
-    align-items: start;
-    gap: 3rem;
-}
-
-.footer_brand h2 {
-    margin-bottom: 0.9rem;
-    color: var(--color-white);
-    font-size: 1.35rem;
-}
-
-.footer_brand p,
-.footer_role,
-.footer_location address {
-    color: var(--color-light);
-}
-
-.footer_brand p {
-    max-width: 28ch;
-}
-
-.footer_label {
-    margin-bottom: 0.8rem;
-    color: var(--color-accent);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.footer_contact h3 {
-    margin-bottom: 0.3rem;
-    color: var(--color-white);
-    font-size: 1.1rem;
-}
-
-.footer_role span {
-    display: block;
-    margin-top: 0.2rem;
-    color: var(--color-light);
-    font-size: 0.75rem;
-}
-
-.footer_email,
-.footer_map_link {
-    display: inline-block;
-    margin-top: 0.85rem;
-    padding-bottom: 0.15rem;
-    border-bottom: 1px solid rgba(245, 242, 233, 0.38);
-    color: var(--color-white);
-    font-size: 0.9rem;
-    transition: color 200ms ease, border-color 200ms ease;
-}
-
-.footer_email:hover,
-.footer_map_link:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-}
-
-.footer_location address {
-    margin-bottom: 0.85rem;
-    font-size: 0.9rem;
-    font-style: normal;
-}
-
-.footer_map {
-    display: block;
-    width: 100%;
-    height: 12rem;
-    border: 0;
-    border-radius: 4px;
-    background: var(--color-bg1);
-}
-
-.footer_map_link {
-    font-size: 0.75rem;
-}
-
-.footer_bottom {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(245, 242, 233, 0.2);
-    color: var(--color-light);
-    font-size: 0.75rem;
-}
-
-.footer_bottom a {
-    color: var(--color-white);
-}
-
-@media (max-width: 760px) {
-    .footer_container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .footer_map {
-        height: 14rem;
-    }
-
-    .footer_bottom {
-        flex-direction: column;
-        gap: 0.4rem;
-        margin-top: 2rem;
-    }
-}
     .destination_media {
         aspect-ratio: 1.15;
     }
-        .destination_media {
-            aspect-ratio: 1.15;
-        }
-    }
+}
 
 /* Footer identity, sample contact, and embedded hotel map */
 .site_footer {
@@ -1138,5 +1436,9 @@ header {
         flex-direction: column;
         gap: 0.4rem;
         margin-top: 2rem;
+    }
+
+    .reservation_summary {
+        top: auto;
     }
 }
