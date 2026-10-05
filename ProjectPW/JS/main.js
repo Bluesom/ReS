@@ -129,3 +129,53 @@ document.querySelectorAll('#Home .hero_title, #Home p').forEach((text) => {
         text.style.removeProperty('--cursor-opacity')
     })
 })
+
+// Keep the booking form honest: validate dates locally without implying a reservation was sent.
+const bookingForm = document.querySelector('#booking-request-form')
+
+if (bookingForm) {
+    const arrivalInput = bookingForm.querySelector('#arrival')
+    const departureInput = bookingForm.querySelector('#departure')
+    const statusMessage = bookingForm.querySelector('#booking-form-status')
+    const toLocalDateString = (date) => {
+        const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+        return localDate.toISOString().slice(0, 10)
+    }
+
+    arrivalInput.min = toLocalDateString(new Date())
+
+    const updateDepartureMinimum = () => {
+        const minimumDate = arrivalInput.value ? new Date(`${arrivalInput.value}T00:00:00`) : new Date()
+        minimumDate.setDate(minimumDate.getDate() + 1)
+        departureInput.min = toLocalDateString(minimumDate)
+
+        if (departureInput.value && departureInput.value < departureInput.min) {
+            departureInput.value = ''
+        }
+    }
+
+    arrivalInput.addEventListener('change', updateDepartureMinimum)
+    departureInput.addEventListener('change', () => {
+        const isInvalid = arrivalInput.value && departureInput.value <= arrivalInput.value
+        departureInput.setCustomValidity(isInvalid ? 'Choose a departure date after your arrival date.' : '')
+    })
+
+    bookingForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+        statusMessage.textContent = 'Your dates are selected. This demo does not send reservation requests. Please email hello@example.com to confirm availability.'
+        statusMessage.classList.remove('hidden')
+    })
+
+    updateDepartureMinimum()
+}
+
+// Keep the static authentication demo from submitting credentials.
+document.querySelectorAll('.auth-form').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+        event.preventDefault()
+        const statusMessage = form.querySelector('[role="status"]')
+        statusMessage.textContent =
+            'This demo does not authenticate users or create accounts. No credentials were sent.'
+        statusMessage.classList.remove('hidden')
+    })
+})
