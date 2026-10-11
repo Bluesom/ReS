@@ -1,50 +1,36 @@
-const mockBookings = [
-    { id: 'BK-1001', guestName: 'Marco Rinaldi', email: 'marco.rinaldi@example.com', roomType: 'Lake View Room', checkIn: '2026-10-11', checkOut: '2026-10-14', guests: 2, status: 'pending', totalAmount: 540, requests: 'Late check-in, arriving around 9pm.' },
-    { id: 'BK-1002', guestName: 'Giulia Conti', email: 'giulia.conti@example.com', roomType: 'Alpine Suite', checkIn: '2026-10-11', checkOut: '2026-10-13', guests: 2, status: 'confirmed', totalAmount: 760, requests: 'None.' },
-    { id: 'BK-1003', guestName: 'Hans Gruber', email: 'hans.gruber@example.com', roomType: 'Mountain View Room', checkIn: '2026-10-09', checkOut: '2026-10-12', guests: 1, status: 'checked-in', totalAmount: 450, requests: 'Quiet room away from the elevator.' },
-    { id: 'BK-1004', guestName: 'Sara Moretti', email: 'sara.moretti@example.com', roomType: 'Family Room', checkIn: '2026-10-15', checkOut: '2026-10-20', guests: 4, status: 'confirmed', totalAmount: 1250, requests: 'Extra bed for a child.' },
-    { id: 'BK-1005', guestName: 'Elena Fischer', email: 'elena.fischer@example.com', roomType: 'Lake View Room', checkIn: '2026-10-03', checkOut: '2026-10-06', guests: 2, status: 'checked-out', totalAmount: 540, requests: 'None.' },
-    { id: 'BK-1006', guestName: 'Tomas Novak', email: 'tomas.novak@example.com', roomType: 'Mountain View Room', checkIn: '2026-10-18', checkOut: '2026-10-19', guests: 1, status: 'cancelled', totalAmount: 150, requests: 'None.' },
-    { id: 'BK-1007', guestName: 'Anna Keller', email: 'anna.keller@example.com', roomType: 'Alpine Suite', checkIn: '2026-10-11', checkOut: '2026-10-16', guests: 2, status: 'pending', totalAmount: 1900, requests: 'Celebrating an anniversary — champagne on arrival if possible.' },
-    { id: 'BK-1008', guestName: 'Luca Bianchi', email: 'luca.bianchi@example.com', roomType: 'Family Room', checkIn: '2026-10-07', checkOut: '2026-10-10', guests: 3, status: 'checked-out', totalAmount: 750, requests: 'None.' },
-    { id: 'BK-1009', guestName: 'Ingrid Hoffmann', email: 'ingrid.hoffmann@example.com', roomType: 'Lake View Room', checkIn: '2026-10-12', checkOut: '2026-10-15', guests: 2, status: 'confirmed', totalAmount: 540, requests: 'Ground floor if available.' },
-    { id: 'BK-1010', guestName: 'Pietro Russo', email: 'pietro.russo@example.com', roomType: 'Mountain View Room', checkIn: '2026-10-22', checkOut: '2026-10-25', guests: 2, status: 'pending', totalAmount: 450, requests: 'None.' },
-]
+const API_BASE_URL = 'http://localhost:3000';
 
-const mockRooms = [
-    { id: 'R-101', roomNumber: '101', type: 'Lake View Room', floor: 1, ratePerNight: 180, status: 'occupied' },
-    { id: 'R-102', roomNumber: '102', type: 'Lake View Room', floor: 1, ratePerNight: 180, status: 'available' },
-    { id: 'R-201', roomNumber: '201', type: 'Mountain View Room', floor: 2, ratePerNight: 150, status: 'occupied' },
-    { id: 'R-202', roomNumber: '202', type: 'Mountain View Room', floor: 2, ratePerNight: 150, status: 'maintenance' },
-    { id: 'R-301', roomNumber: '301', type: 'Alpine Suite', floor: 3, ratePerNight: 380, status: 'occupied' },
-    { id: 'R-302', roomNumber: '302', type: 'Alpine Suite', floor: 3, ratePerNight: 380, status: 'available' },
-    { id: 'R-110', roomNumber: '110', type: 'Family Room', floor: 1, ratePerNight: 250, status: 'available' },
-    { id: 'R-111', roomNumber: '111', type: 'Family Room', floor: 1, ratePerNight: 250, status: 'occupied' },
-]
+const fetchBookings = async () => {
+    const response = await fetch(`${API_BASE_URL}/bookings`);
+    if (!response.ok) throw new Error('Failed to load bookings from server.');
+    return await response.json();
+};
 
-const mockGuests = [
-    { id: 'G-01', name: 'Marco Rinaldi', email: 'marco.rinaldi@example.com', totalBookings: 2, lastStay: '2026-10-11' },
-    { id: 'G-02', name: 'Giulia Conti', email: 'giulia.conti@example.com', totalBookings: 1, lastStay: '2026-10-11' },
-    { id: 'G-03', name: 'Hans Gruber', email: 'hans.gruber@example.com', totalBookings: 3, lastStay: '2026-10-09' },
-    { id: 'G-04', name: 'Sara Moretti', email: 'sara.moretti@example.com', totalBookings: 1, lastStay: '2026-10-15' },
-    { id: 'G-05', name: 'Elena Fischer', email: 'elena.fischer@example.com', totalBookings: 4, lastStay: '2026-10-03' },
-    { id: 'G-06', name: 'Anna Keller', email: 'anna.keller@example.com', totalBookings: 2, lastStay: '2026-10-11' },
-    { id: 'G-07', name: 'Luca Bianchi', email: 'luca.bianchi@example.com', totalBookings: 1, lastStay: '2026-10-07' },
-    { id: 'G-08', name: 'Ingrid Hoffmann', email: 'ingrid.hoffmann@example.com', totalBookings: 2, lastStay: '2026-10-12' },
-]
+const fetchRooms = async () => {
+    const response = await fetch(`${API_BASE_URL}/rooms`);
+    if (!response.ok) throw new Error('Failed to load rooms from server.');
+    return await response.json();
+};
 
-const simulateNetworkDelay = (data, delayMs = 250) =>
-    new Promise((resolve) => setTimeout(() => resolve(data), delayMs))
+const fetchGuests = async () => {
+    const response = await fetch(`${API_BASE_URL}/guests`);
+    if (!response.ok) throw new Error('Failed to load guests from server.');
+    return await response.json();
+};
 
-const fetchBookings = () => simulateNetworkDelay(mockBookings)
-const fetchRooms = () => simulateNetworkDelay(mockRooms)
-const fetchGuests = () => simulateNetworkDelay(mockGuests)
+const updateBookingStatus = async (bookingId, newStatus) => {
+    const response = await fetch(`${API_BASE_URL}/bookings/${bookingId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus }),
+    });
+    if (!response.ok) throw new Error('Failed to update booking status.');
+    return await response.json();
+};
 
-const updateBookingStatus = (bookingId, newStatus) => {
-    const booking = mockBookings.find((item) => item.id === bookingId)
-    if (booking) booking.status = newStatus
-    return simulateNetworkDelay(booking, 150)
-}
+// --- GLOBAL STATE ---
 
 const state = {
     bookings: [],
@@ -52,9 +38,11 @@ const state = {
     guests: [],
     filters: {
         status: 'all',   // 'all' | 'confirmed' | 'pending' | 'checked-in' | 'checked-out' | 'cancelled'
-        search: '',       // matched against guest name and email, case-insensitive
+        search: '',      // matched against guest name and email, case-insensitive
     },
 }
+
+// --- STYLING & FORMATTING HELPERS ---
 
 const STATUS_BADGE_STYLES = {
     confirmed: 'bg-lake/20 text-forest',
@@ -77,6 +65,8 @@ const formatDate = (isoDate) =>
 
 const formatCurrency = (amount) =>
     amount.toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
+
+// --- KPI CALCULATIONS & RENDERING ---
 
 const calculateKpis = (bookings, rooms) => {
     const todayIso = new Date().toISOString().slice(0, 10)
@@ -120,6 +110,8 @@ const renderKpiCards = (kpis) => {
         )
         .join('')
 }
+
+// --- TABLE RENDERING FUNCTIONS ---
 
 const renderRecentBookings = (bookings) => {
     const recent = [...bookings].sort((a, b) => (a.checkIn < b.checkIn ? 1 : -1)).slice(0, 5)
@@ -213,6 +205,8 @@ const renderAll = () => {
     renderGuestsTable(state.guests)
 }
 
+// --- FILTER & SEARCH LOGIC ---
+
 const getFilteredBookings = () => {
     const { status, search } = state.filters
     const searchTerm = search.trim().toLowerCase()
@@ -230,12 +224,9 @@ const getFilteredBookings = () => {
 
 const setStatusFilter = (status) => {
     state.filters.status = status
-
-    // Reflect the active chip visually.
     document.querySelectorAll('.status-filter-chip').forEach((chip) => {
         chip.setAttribute('aria-pressed', String(chip.dataset.status === status))
     })
-
     renderBookingsTable()
 }
 
@@ -243,6 +234,8 @@ const handleSearchInput = (event) => {
     state.filters.search = event.target.value
     renderBookingsTable()
 }
+
+// --- MODAL CONTROLS ---
 
 let activeBookingId = null
 
@@ -278,11 +271,16 @@ const handleModalSave = async () => {
     if (!activeBookingId) return
 
     const newStatus = document.querySelector('#modal-status-select').value
-    await updateBookingStatus(activeBookingId, newStatus)
-
-    renderAll()
-    closeBookingModal()
+    try {
+        await updateBookingStatus(activeBookingId, newStatus)
+        renderAll()
+        closeBookingModal()
+    } catch (error) {
+        alert(error.message)
+    }
 }
+
+// --- VIEW NAVIGATION & SIDEBAR ---
 
 const VIEW_TITLES = {
     overview: 'Overview',
@@ -332,51 +330,77 @@ const toggleDropdown = (panelSelector, toggleSelector, otherPanelSelector) => {
     toggle.setAttribute('aria-expanded', String(willOpen))
 }
 
+// --- INITIALIZATION & API STATE HANDLING ---
+
 const init = async () => {
-    const [bookings, rooms, guests] = await Promise.all([fetchBookings(), fetchRooms(), fetchGuests()])
+    const loadingEl = document.querySelector('#api-loading')
+    const errorEl = document.querySelector('#api-error')
+    const errorMessageEl = document.querySelector('#api-error-message')
+    const retryBtn = document.querySelector('#retry-btn')
 
-    state.bookings = bookings
-    state.rooms = rooms
-    state.guests = guests
+    // 1. LOADING STATE: Show spinner, hide error container
+    loadingEl.classList.remove('hidden')
+    errorEl.classList.add('hidden')
 
-    renderAll()
+    try {
+        // Concurrently fetch all real API endpoints
+        const [bookings, rooms, guests] = await Promise.all([
+            fetchBookings(),
+            fetchRooms(),
+            fetchGuests()
+        ])
 
-    // --- Sidebar navigation ---
+        // Assign fetched data to global state
+        state.bookings = bookings
+        state.rooms = rooms
+        state.guests = guests
+
+        // 2. SUCCESS STATE: Hide spinner, render dashboard interface
+        loadingEl.classList.add('hidden')
+        renderAll()
+
+    } catch (error) {
+        // 3. ERROR STATE: Hide spinner, display error message and retry button
+        loadingEl.classList.add('hidden')
+        errorMessageEl.textContent = error.message
+        errorEl.classList.remove('hidden')
+        console.error('API Connection Error:', error)
+    }
+
+    // --- Try Again Button Handler ---
+    retryBtn.onclick = () => {
+        init()
+    }
+
+    // --- Event Listeners ---
     document.querySelectorAll('.sidebar-nav-link').forEach((link) => {
         link.addEventListener('click', () => switchView(link.dataset.view))
     })
-    // "View all" link on the Overview panel's recent-bookings card.
     document.querySelector('[data-view-link="bookings"]').addEventListener('click', () => switchView('bookings'))
 
-    // --- Mobile sidebar toggle ---
     document.querySelector('#sidebar-toggle').addEventListener('click', openMobileSidebar)
     document.querySelector('#sidebar-backdrop').addEventListener('click', closeMobileSidebar)
 
-    // --- Status filters + search ---
     document.querySelectorAll('.status-filter-chip').forEach((chip) => {
         chip.addEventListener('click', () => setStatusFilter(chip.dataset.status))
     })
     document.querySelector('#booking-search').addEventListener('input', handleSearchInput)
 
-    // --- Bookings table row actions (event delegation, since rows are
-    //     re-rendered on every filter/search change) ---
     document.querySelector('#bookings-table-body').addEventListener('click', (event) => {
         const button = event.target.closest('.view-booking-btn')
         if (button) openBookingModal(button.dataset.bookingId)
     })
 
-    // --- Modal controls ---
     document.querySelector('#modal-close').addEventListener('click', closeBookingModal)
     document.querySelector('#modal-cancel').addEventListener('click', closeBookingModal)
     document.querySelector('#modal-save').addEventListener('click', handleModalSave)
     document.querySelector('#booking-modal').addEventListener('click', (event) => {
-        if (event.target.id === 'booking-modal') closeBookingModal() // click on backdrop
+        if (event.target.id === 'booking-modal') closeBookingModal()
     })
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeBookingModal()
     })
 
-    // --- Header dropdowns ---
     document.querySelector('#notifications-toggle').addEventListener('click', (event) => {
         event.stopPropagation()
         toggleDropdown('#notifications-panel', '#notifications-toggle', '#profile-panel')
@@ -385,11 +409,11 @@ const init = async () => {
         event.stopPropagation()
         toggleDropdown('#profile-panel', '#profile-toggle', '#notifications-panel')
     })
-    // Click anywhere else closes both dropdowns.
     document.addEventListener('click', () => {
         document.querySelector('#notifications-panel').classList.add('hidden')
         document.querySelector('#profile-panel').classList.add('hidden')
     })
 }
 
+// Run initialization when page loads
 document.addEventListener('DOMContentLoaded', init)

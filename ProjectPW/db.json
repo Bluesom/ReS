@@ -1,0 +1,11 @@
+{
+  "bookings": [
+    { "id": "BK-1001", "guestName": "Marco Rinaldi", "email": "marco.rinaldi@example.com", "roomType": "Lake View Room", "checkIn": "2026-10-11", "checkOut": "2026-10-14", "guests": 2, "status": "pending", "totalAmount": 540, "requests": "Late check-in." }
+  ],
+  "rooms": [
+    { "id": "R-101", "roomNumber": "101", "type": "Lake View Room", "floor": 1, "ratePerNight": 180, "status": "occupied" }
+  ],
+  "guests": [
+    { "id": "G-01", "name": "Marco Rinaldi", "email": "marco.rinaldi@example.com", "totalBookings": 2, "lastStay": "2026-10-11" }
+  ]
+}
