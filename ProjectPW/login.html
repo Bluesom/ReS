@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 	</head>
 	<body class="bg-paper font-sans text-ink antialiased">
+		<!-- Shared site navigation -->
 		<nav class="fixed inset-x-0 top-0 z-50 h-20 bg-forest transition-all duration-300">
 			<div class="container mx-auto flex h-full w-[min(90%,1280px)] items-center justify-between">
 				<a class="nav-brand font-display text-lg font-semibold text-white sm:text-xl" href="./index.html#Home">
@@ -27,6 +28,7 @@
 			</div>
 		</nav>
 
+		<!-- Login form and account links -->
 		<main class="min-h-svh bg-mist px-5 pb-16 pt-28 sm:px-8 sm:pt-36">
 			<div class="mx-auto grid max-w-5xl overflow-hidden rounded-sm bg-white shadow-xl md:grid-cols-[0.9fr_1.1fr]">
 				<section class="auth-visual auth-visual-login flex flex-col justify-between p-8 text-white sm:p-12">
@@ -44,21 +46,30 @@
 					<form class="auth-form grid gap-5" id="login-form">
 						<div>
 							<label class="mb-2 block text-sm font-medium text-forest" for="login-email">Email address</label>
-							<input class="w-full rounded-sm border border-forest/20 bg-paper px-4 py-3 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="login-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+							<input class="w-full rounded-sm border border-forest/20 bg-paper px-4 py-3 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="login-email" name="email" type="email" autocomplete="email" required>
 						</div>
 						<div>
 							<label class="mb-2 block text-sm font-medium text-forest" for="login-password">Password</label>
-							<input class="w-full rounded-sm border border-forest/20 bg-paper px-4 py-3 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="login-password" name="password" type="password" autocomplete="current-password" required>
+							<div class="relative">
+								<input class="w-full rounded-sm border border-forest/20 bg-paper px-4 py-3 pr-12 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="login-password" name="password" type="password" autocomplete="current-password" required>
+								<button class="absolute inset-y-0 right-0 grid w-12 place-items-center text-ink/60 transition hover:text-forest focus-visible:outline-2 focus-visible:outline-clay" type="button" data-password-toggle="login-password" aria-label="Show password" aria-pressed="false">
+									<i class="fa-regular fa-eye" aria-hidden="true"></i>
+								</button>
+							</div>
 						</div>
 						<button class="mt-1 inline-flex items-center justify-center gap-3 rounded-full bg-forest px-5 py-3 font-semibold text-white transition hover:bg-clay focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay" type="submit">Log in <i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></button>
 						<p class="hidden rounded-sm border border-lake/30 bg-mist p-4 text-sm leading-6 text-forest" role="status" aria-live="polite"></p>
+						<p class="pt-2 text-center text-sm text-ink/75"><a class="font-semibold text-forest underline decoration-clay underline-offset-4 transition hover:text-clay" href="./ForgotPassword.html">Forgot password?</a></p>
 						<p class="pt-2 text-center text-sm text-ink/75">New here? <a class="font-semibold text-forest underline decoration-clay underline-offset-4 transition hover:text-clay" href="./register.html">Create an account</a>.</p>
 					</form>
-					<p class="mt-7 text-center text-xs leading-5 text-ink/55">Demo only. This form does not verify accounts or send/store credentials.</p>
+					<p class="mt-7 text-center text-xs leading-5 text-ink/55">Sign in with your guest or administrator email.</p>
+					<!-- Local demo administrator: email admin@example.com, password Admin123!. Never use these credentials outside this project. -->
+					<p class="mt-4 rounded-sm bg-mist p-3 text-xs leading-5 text-ink/70">Local demo admin: <strong>admin@example.com</strong> / <strong>Admin123!</strong>. Do not use this account in production.</p>
 				</section>
 			</div>
 		</main>
 
+		<!-- Shared page interactions -->
 		<script src="./JS/main.js"></script>
 	</body>
 </html>

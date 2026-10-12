@@ -1,0 +1,57 @@
+{
+  "guests": [
+    {
+      "id": "G-29440857-231c-4de1-9770-28043482ca0b",
+      "guestNumber": "G-001",
+      "name": "Edward Jack Mahardika",
+      "email": "jackmahardi@gmail.com",
+      "country": "Indonesia",
+      "phone": "+6285745332881",
+      "totalBookings": 0,
+      "lastStay": null
+    }
+  ],
+  "guestCredentials": [
+    {
+      "id": "G-29440857-231c-4de1-9770-28043482ca0b",
+      "salt": "c37d5291de1594844d1a6e1b64ed8a4b",
+      "passwordHash": "65ff29dff4a616f13fe2920490e8d21d8079253550acf6556331750b3a4e271d3e0a904dbdfd15a138df53a7615d3b01b2cc1b5cb56c19ad2ab8cb7d6b41cb9e"
+    }
+  ],
+  "admins": [
+    {
+      "id": "ADM-5bd644c2-bb49-4b60-8a3b-29f6506e7444",
+      "adminNumber": "ADM-001",
+      "email": "admin@example.com",
+      "name": "Hotel Administrator"
+    }
+  ],
+  "adminCredentials": [
+    {
+      "id": "ADM-5bd644c2-bb49-4b60-8a3b-29f6506e7444",
+      "salt": "cc71662ab2babd47469e536420a84f78",
+      "passwordHash": "8a7148aebcee4ba92a8ffe5bbbefaa2795c3bb4a5f5fd688716586d6ee413d11388ed895f069b5742c4c30443168b4e5cd91362d0cd949adbd388fa95009a525"
+    }
+  ],
+  "roomTypes": [
+    {
+      "id": "RT-01",
+      "name": "Lake View Room",
+      "ratePerNight": 180
+    }
+  ],
+  "rooms": [
+    {
+      "id": "R-101",
+      "roomNumber": "101",
+      "roomTypeId": "RT-01",
+      "floor": 1,
+      "status": "occupied"
+    }
+  ],
+  "bookings": [],
+  "offers": [],
+  "sequences": {
+    "guestNumber": 1
+  }
+}

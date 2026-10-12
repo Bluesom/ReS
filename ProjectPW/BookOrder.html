@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 	</head>
 	<body class="bg-paper font-sans text-ink antialiased">
+		<!-- Shared site navigation -->
 		<nav class="fixed inset-x-0 top-0 z-50 h-20 bg-forest transition-all duration-300">
 			<div class="container mx-auto flex h-full w-[min(90%,1280px)] items-center justify-between">
 				<a class="nav-brand font-display text-lg font-semibold text-white sm:text-xl" href="./index.html">
@@ -28,6 +29,7 @@
 		</nav>
 
 		<main class="min-h-svh pt-20" aria-label="Booking page">
+			<!-- Booking page introduction -->
 			<section class="bg-mist py-14 sm:py-20">
 				<div class="container mx-auto w-[min(90%,1120px)]">
 					<p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-clay">Your alpine escape starts here</p>
@@ -35,6 +37,7 @@
 					<p class="mt-5 max-w-2xl leading-7 text-ink/75">Share your preferred dates and we’ll help you plan a lakeside stay in the Dolomites.</p>
 				</div>
 			</section>
+			<!-- Availability request form and hotel details -->
 			<section class="py-14 sm:py-20">
 				<div class="container mx-auto grid w-[min(90%,1120px)] gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
 					<aside class="max-w-sm">
@@ -68,29 +71,25 @@
 								</select>
 							</div>
 							<div class="grid gap-2">
-								<label class="text-sm font-semibold text-ink" for="room-type">Room preference</label>
-								<select class="min-h-12 rounded-sm border border-forest/20 bg-white px-4 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="room-type" name="room-type">
-									<option value="no-preference">No preference</option>
-									<option value="lake-view">Lake view</option>
-									<option value="mountain-view">Mountain view</option>
+								<label class="text-sm font-semibold text-ink" for="room-type">Room type</label>
+								<select class="min-h-12 rounded-sm border border-forest/20 bg-white px-4 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="room-type" name="roomTypeId" required disabled>
+									<option value="">Loading room types…</option>
 								</select>
 							</div>
-							<div class="grid gap-2 sm:col-span-2">
-								<label class="text-sm font-semibold text-ink" for="email">Email address</label>
-								<input class="min-h-12 rounded-sm border border-forest/20 bg-white px-4 text-ink outline-none transition placeholder:text-ink/40 focus:border-lake focus:ring-2 focus:ring-lake/20" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
-							</div>
+							<div id="room-type-preview" class="hidden overflow-hidden rounded-sm border border-forest/10 bg-paper sm:col-span-2" aria-live="polite"></div>
 							<button class="booking_submit mt-2 sm:col-span-2 sm:justify-self-start" type="submit">
 								<span class="hero_cta_body">Check availability</span>
 								<span class="hero_cta_icon" aria-hidden="true"><i class="fa-solid fa-location-arrow"></i></span>
 							</button>
 							<p class="hidden rounded-sm border border-lake/30 bg-mist p-4 text-sm leading-6 text-forest sm:col-span-2" id="booking-form-status" role="status" aria-live="polite"></p>
 						</form>
-						<p class="mt-5 text-xs leading-5 text-ink/55">Demo form only. Your details are not sent or stored. Contact the hotel directly to confirm availability.</p>
+						<p class="mt-5 text-xs leading-5 text-ink/55">Your request is saved as pending for hotel review. It is not confirmed until the hotel approves it.</p>
 					</div>
 				</div>
 			</section>
 		</main>
 
+		<!-- Hotel contact information and location -->
 		<footer class="bg-forest py-12 text-white sm:py-14">
 			<div class="container mx-auto grid w-[min(90%,1280px)] gap-9 md:grid-cols-[1fr_0.9fr_1.2fr] md:gap-12">
 				<div>
@@ -121,6 +120,7 @@
 			</div>
 		</footer>
 
+		<!-- Shared page interactions -->
 		<script src="./JS/main.js"></script>
 	</body>
 </html>

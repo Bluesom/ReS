@@ -1,6 +1,8 @@
+/* Fonts and Tailwind entry point */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* Shared design tokens */
 @theme {
     --font-sans: "Poppins", sans-serif;
     --font-display: "Poppins", sans-serif;
@@ -13,6 +15,7 @@
     --color-sun: #c6a76b;
 }
 
+/* Base document styles */
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
@@ -23,9 +26,20 @@ body {
     line-height: 1.7;
 }
 
+/* Keep all dashboard dialogs centered and scrollable on shorter screens */
+.dashboard-dialog[open] {
+    position: fixed;
+    inset: 50% auto auto 50%;
+    max-height: 90dvh;
+    margin: 0;
+    overflow-y: auto;
+    transform: translate(-50%, -50%);
+}
+
+/* Shared page foundations and account visuals */
 .hero-shell {
     background-image:
-    radial-gradient(ellipse at left bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 45%, rgba(0, 0, 0, 0.08) 100%),
+        radial-gradient(ellipse at left bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 45%, rgba(0, 0, 0, 0.08) 100%),
         url("../Assets/906353463.jpg");
 }
 
@@ -54,6 +68,7 @@ body {
     background-image: url("../Assets/destination-tre-cime.jpg");
 }
 
+/* Shared navigation and account controls */
 .window-scroll {
     background: rgba(25, 51, 47, 0.94);
     box-shadow: 0 12px 36px rgba(13, 29, 27, 0.18);
@@ -123,6 +138,7 @@ body {
     opacity: 1;
 }
 
+/* Landing-page hero and booking call to action */
 .hero_cta {
     position: absolute;
     right: 10%;
@@ -250,6 +266,7 @@ body {
     line-height: 1.1;
 }
 
+/* Hero positioning and hotel gallery interactions */
 #Home .hero_title,
 #Home p {
     position: relative;
@@ -257,7 +274,13 @@ body {
 }
 
 .about_gallery_item:first-child {
-    grid-row: 1 / span 2;
+    grid-row: 1;
+}
+
+@media (min-width: 768px) {
+    .about_gallery_item:first-child {
+        grid-row: 1 / span 2;
+    }
 }
 
 .about_gallery_item.is-enlarged,
@@ -299,6 +322,7 @@ body {
     box-shadow: 0 12px 28px rgba(18, 35, 28, 0.28);
 }
 
+/* Responsive hero and gallery layouts */
 @media (max-width: 1080px) {
     .hero_title {
         font-size: 4.6rem;
@@ -326,9 +350,6 @@ body {
         font-size: 3.4rem;
     }
 
-    .about_gallery_item:first-child {
-        grid-row: 1 / span 2;
-    }
 }
 
 @media (max-width: 420px) {
@@ -357,6 +378,7 @@ body {
     }
 }
 
+/* Destination carousel */
 .destination_slide.is-active {
     animation: destination-reveal 420ms ease both;
 }
@@ -416,6 +438,7 @@ body {
     transition: --cursor-x 120ms ease-out, --cursor-y 120ms ease-out, --cursor-opacity 240ms ease;
 }
 
+/* Mobile navigation and reduced-motion preferences */
 @media (max-width: 767px) {
     .nav_menu.is-open {
         transform: translateY(0);
@@ -434,4 +457,118 @@ body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+<<<<<<< Updated upstream
+=======
+}
+
+/* Guest profile components */
+.profile-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    color: #25372f;
+    text-align: left;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.profile-tab:hover {
+    background-color: #e4e9e0;
+}
+
+.profile-tab:focus-visible {
+    outline: 2px solid #a96852;
+    outline-offset: 2px;
+}
+
+.profile-tab[aria-selected="true"] {
+    background-color: #28483c;
+    color: #fff;
+    font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+    .profile-tab {
+        width: 100%;
+    }
+}
+
+.profile-banner {
+    background-image:
+        linear-gradient(180deg, rgba(21, 45, 38, 0.55) 0%, rgba(21, 45, 38, 0.85) 100%),
+        url("../Assets/profile-banner.jpg");
+    background-position: center;
+    background-size: cover;
+    background-color: #28483c;
+}
+
+.profile-dialog[open] {
+    margin: auto;
+}
+
+.profile-dialog::backdrop {
+    background: rgba(37, 55, 47, 0.6);
+    backdrop-filter: blur(3px);
+}
+
+/* Admin dashboard controls */
+.sidebar-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    transition: background-color 150ms ease, color 150ms ease;
+    text-align: left;
+}
+
+.sidebar-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.sidebar-nav-link[aria-current="page"] {
+    background-color: #c6a76b;
+    color: #28483c;
+    font-weight: 600;
+}
+
+.status-filter-chip {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(40, 72, 60, 0.15);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #25372f;
+    background: #f4f1e8;
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.status-filter-chip:hover {
+    border-color: #8fa394;
+}
+
+.status-filter-chip[aria-pressed="true"] {
+    background: #28483c;
+    border-color: #28483c;
+    color: #fff;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+>>>>>>> Stashed changes
 }
