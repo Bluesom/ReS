@@ -37,7 +37,8 @@
     {
       "id": "RT-01",
       "name": "Lake View Room",
-      "ratePerNight": 180
+      "ratePerNight": 180,
+      "imagePath": "./Assets/820795496.jpg"
     }
   ],
   "rooms": [

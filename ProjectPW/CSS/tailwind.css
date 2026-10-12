@@ -43,6 +43,14 @@ body {
         url("../Assets/906353463.jpg");
 }
 
+.booking-hero {
+    background-image:
+        linear-gradient(90deg, rgba(21, 45, 38, 0.82), rgba(21, 45, 38, 0.28)),
+        url("../Assets/destination-alpe-siusi.jpg");
+    background-position: center 45%;
+    background-size: cover;
+}
+
 .auth-visual {
     position: relative;
     isolation: isolate;
@@ -141,7 +149,7 @@ body {
 /* Landing-page hero and booking call to action */
 .hero_cta {
     position: absolute;
-    right: 10%;
+    right: 3%;
     bottom: 3rem;
     display: inline-flex;
     align-items: center;
@@ -457,8 +465,6 @@ body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-<<<<<<< Updated upstream
-=======
 }
 
 /* Guest profile components */
@@ -501,7 +507,7 @@ body {
 .profile-banner {
     background-image:
         linear-gradient(180deg, rgba(21, 45, 38, 0.55) 0%, rgba(21, 45, 38, 0.85) 100%),
-        url("../Assets/profile-banner.jpg");
+        url("../Assets/906353463.jpg");
     background-position: center;
     background-size: cover;
     background-color: #28483c;
@@ -570,5 +576,5 @@ body {
     border-radius: 999px;
     font-size: 0.75rem;
     font-weight: 600;
->>>>>>> Stashed changes
+
 }

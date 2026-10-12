@@ -58,10 +58,15 @@ if (publicOffers) {
                 const content = document.createElement('div')
                 content.className = 'p-5 sm:p-7'
                 const badge = document.createElement('p')
-                badge.className = 'mb-2 text-xs font-bold uppercase tracking-[0.16em] text-clay'
-                badge.textContent = offer.discountType === 'percentage'
+                badge.className = 'mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-clay'
+                const badgeIcon = document.createElement('i')
+                badgeIcon.className = 'fa-solid fa-tag'
+                badgeIcon.setAttribute('aria-hidden', 'true')
+                const discountLabel = document.createElement('span')
+                discountLabel.textContent = offer.discountType === 'percentage'
                     ? `${offer.discountValue}% off`
                     : `$${Number(offer.discountValue).toLocaleString()} off`
+                badge.append(badgeIcon, discountLabel)
                 const title = document.createElement('h3')
                 title.className = 'mb-2 text-lg font-semibold text-forest'
                 title.textContent = offer.title
@@ -268,10 +273,7 @@ document.querySelectorAll('.auth-form').forEach((form) => {
             'This demo does not authenticate users or create accounts. No credentials were sent.'
         statusMessage.classList.remove('hidden')
     })
-<<<<<<< Updated upstream
 })
-=======
-}
 
 // ---------------------------------------------------------------------------
 // Login
@@ -996,4 +998,3 @@ if (document.querySelector('#profile-edit-form')) {
         loadProfile()
     })()
 }
->>>>>>> Stashed changes
