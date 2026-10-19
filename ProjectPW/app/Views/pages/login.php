@@ -1,0 +1,76 @@
+<?php if (!defined('APP_BOOTSTRAPPED')) { http_response_code(404); exit; } ?>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Log in | Grand Hotel Misurina</title>
+		<meta name="description" content="Log in to your Grand Hotel Misurina account.">
+		<link rel="stylesheet" href="./CSS/output.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+	</head>
+	<body class="bg-paper font-sans text-ink antialiased">
+		<!-- Shared site navigation -->
+		<nav class="fixed inset-x-0 top-0 z-50 h-20 bg-forest transition-all duration-300">
+			<div class="container mx-auto flex h-full w-[min(90%,1280px)] items-center justify-between">
+				<a class="nav-brand font-display text-lg font-semibold text-white sm:text-xl" href="./index.php#Home">
+					<h4>Grand Hotel Misurina</h4>
+				</a>
+				<ul class="nav_menu invisible pointer-events-none absolute right-0 top-[calc(100%+0.75rem)] z-20 flex w-[min(20rem,calc(100vw-2rem))] translate-y-2 flex-col gap-1 rounded-md border border-white/10 bg-forest p-2 opacity-0 shadow-2xl transition-all duration-200 md:visible md:pointer-events-auto md:static md:w-auto md:translate-y-0 md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:opacity-100 md:shadow-none" id="primary-navigation">
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Home">Explore Hotels</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#About">Our Story</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Deals">Deals &amp; Offers</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Destinations">Destinations</a></li>
+					<li><a class="nav-auth-login" href="#login"><span>Log in</span><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></a></li>
+				</ul>
+				<button class="nav_toggle grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white hover:text-forest focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sun md:hidden" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+					<i class="fa-solid fa-bars" aria-hidden="true"></i>
+				</button>
+			</div>
+		</nav>
+
+		<!-- Login form and account links -->
+		<main class="min-h-svh bg-mist px-5 pb-16 pt-28 sm:px-8 sm:pt-36">
+			<div class="mx-auto grid max-w-5xl overflow-hidden rounded-sm bg-white shadow-xl md:grid-cols-[0.9fr_1.1fr]">
+				<section class="auth-visual auth-visual-login flex flex-col justify-between p-8 text-white sm:p-12">
+					<div>
+						<p class="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-sun">Welcome back</p>
+						<h1 class="font-display text-4xl font-semibold leading-tight sm:text-5xl">A little closer to the mountains.</h1>
+						<p class="mt-5 max-w-sm leading-7 text-white/75">Sign in to continue planning your stay beside Lake Misurina.</p>
+					</div>
+					<p class="mt-12 text-sm text-white/80">Grand Hotel Misurina <span class="mx-2 text-sun">·</span> Dolomites, Italy</p>
+				</section>
+
+				<section class="p-7 sm:p-12" id="login">
+					<p class="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-clay">Your account</p>
+					<h2 class="mb-7 font-display text-3xl font-semibold text-forest">Log in</h2>
+					<form class="auth-form grid gap-5" id="login-form">
+						<div>
+							<label class="mb-2 block text-sm font-medium text-forest" for="login-email">Email address</label>
+							<input class="w-full rounded-sm border border-forest/20 bg-paper px-4 py-3 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="login-email" name="email" type="email" autocomplete="email" required>
+						</div>
+						<div>
+							<label class="mb-2 block text-sm font-medium text-forest" for="login-password">Password</label>
+							<div class="relative">
+								<input class="w-full rounded-sm border border-forest/20 bg-paper px-4 py-3 pr-12 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="login-password" name="password" type="password" autocomplete="current-password" required>
+								<button class="absolute inset-y-0 right-0 grid w-12 place-items-center text-ink/60 transition hover:text-forest focus-visible:outline-2 focus-visible:outline-clay" type="button" data-password-toggle="login-password" aria-label="Show password" aria-pressed="false">
+									<i class="fa-regular fa-eye" aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
+						<button class="mt-1 inline-flex items-center justify-center gap-3 rounded-full bg-forest px-5 py-3 font-semibold text-white transition hover:bg-clay focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay" type="submit">Log in <i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></button>
+						<p class="hidden rounded-sm border border-lake/30 bg-mist p-4 text-sm leading-6 text-forest" role="status" aria-live="polite"></p>
+						<p class="pt-2 text-center text-sm text-ink/75"><a class="font-semibold text-forest underline decoration-clay underline-offset-4 transition hover:text-clay" href="./ForgotPassword.php">Forgot password?</a></p>
+						<p class="pt-2 text-center text-sm text-ink/75">New here? <a class="font-semibold text-forest underline decoration-clay underline-offset-4 transition hover:text-clay" href="./register.php">Create an account</a>.</p>
+					</form>
+					<p class="mt-7 text-center text-xs leading-5 text-ink/55">Sign in with your guest or administrator email.</p>
+					<!-- Local demo administrator: email admin@example.com, password Admin123!. Never use these credentials outside this project. -->
+					<p class="mt-4 rounded-sm bg-mist p-3 text-xs leading-5 text-ink/70">Local demo admin: <strong>admin@example.com</strong> / <strong>Admin123!</strong>. Do not use this account in production.</p>
+				</section>
+			</div>
+		</main>
+
+		<!-- Shared page interactions -->
+		<script src="./JS/main.js"></script>
+	</body>
+</html>

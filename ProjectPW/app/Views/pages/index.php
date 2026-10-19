@@ -1,0 +1,185 @@
+<?php if (!defined('APP_BOOTSTRAPPED')) { http_response_code(404); exit; } ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Grand Hotel Misurina | A Dolomites Lakeside Retreat</title>
+        <meta name="description" content="Stay beside Lake Misurina at Grand Hotel Misurina, a peaceful base for exploring the Dolomites.">
+
+        <!-- Site styles and icon library -->
+        <link rel="stylesheet" href="./CSS/output.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    </head>
+
+    <body class="bg-paper font-sans text-ink antialiased">
+        <main>
+            <header class="hero-shell relative flex min-h-svh flex-col overflow-hidden bg-cover bg-center text-paper">
+                <!-- Site navigation -->
+                <nav class="fixed inset-x-0 top-0 z-50 h-20 bg-transparent transition-all duration-300" id="navbar">
+                    <div class="container mx-auto flex h-full w-[min(90%,1280px)] items-center justify-between">
+                        <a class="nav-brand font-display text-lg font-semibold text-white sm:text-xl" href="#Home">
+                            <h4>Grand Hotel Misurina</h4>
+                        </a>
+                        <ul class="nav_menu invisible pointer-events-none absolute right-0 top-[calc(100%+0.75rem)] z-20 flex w-[min(20rem,calc(100vw-2rem))] translate-y-2 flex-col gap-1 rounded-md border border-white/10 bg-forest p-2 opacity-0 shadow-2xl transition-all duration-200 md:visible md:pointer-events-auto md:static md:w-auto md:translate-y-0 md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0 md:opacity-100 md:shadow-none" id="primary-navigation">
+                            <li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="#Home">Explore Hotels</a></li>
+                            <li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="#About">Our Story</a></li>
+                            <li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="#Deals">Deals &amp; Offers</a></li>
+                            <li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="#Destinations">Destinations</a></li>
+                            <li><a class="nav-auth-login" href="./login.php#login"><span>Log in</span><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></a></li>
+                        </ul>
+                        <button class="nav_toggle grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white hover:text-forest focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sun md:hidden" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+                            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </nav>
+                <!-- Landing hero and booking call to action -->
+                <div class="container relative mx-auto flex min-h-svh w-[min(90%,1280px)] items-center pb-24 pt-28">
+                    <section class="max-w-3xl" id="Home">
+                        <p class="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-sun sm:text-sm">Lake Misurina · Italian Dolomites</p>
+                        <h1 class="hero_title font-display font-medium text-white">Grand Hotel Misurina</h1>
+                        <p class="mt-7 max-w-2xl text-base leading-8 text-white/85 sm:text-lg">Set beside Lake Misurina and framed by the Dolomites, Grand Hotel Misurina puts alpine scenery at your doorstep. Explore mountain trails and lakeside views, then return to a peaceful retreat beneath the peaks.</p>
+                        <a class="hero_cta" href="./login.php#login">
+                            <span class="hero_cta_body">Book Now</span>
+                            <span class="hero_cta_icon" aria-hidden="true"><i class="fa-solid fa-location-arrow"></i></span>
+                        </a>
+                    </section>
+                </div>
+            </header>
+            <!-- Hotel story and photo gallery -->
+            <section class="bg-paper py-20 sm:py-28" id="About">
+                <div class="container mx-auto grid w-[min(90%,1280px)] items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+                    <div class="max-w-xl">
+                        <p class="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-clay">Our Story</p>
+                        <h2 class="mb-5 font-display text-4xl font-semibold leading-tight text-forest sm:text-5xl">Rooted in the Dolomites</h2>
+                        <p class="max-w-prose text-base leading-8 text-ink/75">Set beside Lake Misurina, Grand Hotel Misurina is part of the area's tradition of alpine hospitality. Its lakeside setting offers a peaceful base for discovering the surrounding peaks, trails, and mountain villages.</p>
+                    </div>
+                    <div class="grid h-104 min-w-0 grid-cols-2 grid-rows-3 gap-3 md:grid-cols-4 md:grid-rows-2 max-md:h-88 max-[420px]:h-72" role="group" aria-label="Photographs of Grand Hotel Misurina and its amenities">
+                        <button class="about_gallery_item group col-span-2 min-h-0 overflow-hidden rounded-sm transition duration-300" type="button" aria-label="Enlarge the hotel beside Lake Misurina" aria-pressed="false">
+                            <img class="h-full w-full object-cover transition duration-700" src="./Assets/906353463.jpg" alt="Grand Hotel Misurina beside Lake Misurina, framed by the Dolomites" loading="lazy">
+                        </button>
+                        <button class="about_gallery_item group min-h-0 overflow-hidden rounded-sm transition duration-300" type="button" aria-label="Enlarge the indoor swimming pool" aria-pressed="false">
+                            <img class="h-full w-full object-cover transition duration-700" src="./Assets/818387940.jpg" alt="The hotel's bright indoor swimming pool" loading="lazy">
+                        </button>
+                        <button class="about_gallery_item group min-h-0 overflow-hidden rounded-sm transition duration-300" type="button" aria-label="Enlarge the hotel dining room" aria-pressed="false">
+                            <img class="h-full w-full object-cover transition duration-700" src="./Assets/818389471.jpg" alt="Warm wood dining room with large windows overlooking the mountains" loading="lazy">
+                        </button>
+                        <button class="about_gallery_item group min-h-0 overflow-hidden rounded-sm transition duration-300" type="button" aria-label="Enlarge a guest room" aria-pressed="false">
+                            <img class="h-full w-full object-cover transition duration-700" src="./Assets/820795496.jpg" alt="Comfortable guest room with alpine views from its balcony" loading="lazy">
+                        </button>
+                        <button class="about_gallery_item group min-h-0 overflow-hidden rounded-sm transition duration-300" type="button" aria-label="Enlarge the mountain-view terrace" aria-pressed="false">
+                            <img class="h-full w-full object-cover transition duration-700" src="./Assets/818389521.jpg" alt="Outdoor hotel terrace overlooking snow-covered Dolomite peaks" loading="lazy">
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Current offers -->
+            <section class="bg-mist py-16 sm:py-20" id="Deals">
+                <div class="container mx-auto grid w-[min(90%,1280px)] items-center gap-7 md:grid-cols-[0.8fr_1.2fr] md:gap-12">
+                    <div>
+                        <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-clay">Make room for the mountains</p>
+                        <h2 class="flex items-center gap-3 font-display text-4xl font-semibold text-forest sm:text-5xl"><i class="fa-solid fa-ticket text-clay" aria-hidden="true"></i>Deals &amp; Offers</h2>
+                    </div>
+                    <div id="public-offers" class="grid gap-4" aria-live="polite">
+                        <div class="flex items-start gap-4 rounded-md border border-forest/10 bg-white p-5 shadow-sm sm:p-6">
+                            <span class="grid size-11 shrink-0 place-items-center rounded-full bg-mist text-forest"><i class="fa-solid fa-tags" aria-hidden="true"></i></span>
+                            <p class="pt-1 text-sm leading-7 text-ink/65">There are no promotions available at the moment. Please check back later.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Nearby destinations carousel -->
+            <section class="bg-paper py-20 sm:py-28" id="Destinations">
+                <div class="container mx-auto w-[min(90%,1280px)]">
+                    <div class="mb-8 sm:mb-10">
+                        <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-clay">Explore the Dolomites</p>
+                        <h2 class="font-display text-4xl font-semibold text-forest sm:text-5xl">Destinations</h2>
+                    </div>
+                    <div class="destination_carousel" role="region" aria-roledescription="carousel" aria-label="Destinations near Grand Hotel Misurina" tabindex="0">
+                        <article class="destination_slide is-active grid items-center gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                            <figure class="group relative aspect-[1.25] min-w-0 overflow-hidden rounded-sm bg-mist sm:aspect-[1.55]">
+                                <img class="h-full w-full object-cover transition duration-700" src="./Assets/destination-lago-braies.jpg" alt="Wooden boats on turquoise Lago di Braies beneath the Dolomite peaks" loading="eager">
+                                <figcaption class="absolute bottom-3 left-3 rounded-sm bg-forest/85 px-3 py-1 text-[11px] text-white"><a href="https://unsplash.com/photos/wooden-boat-on-lago-di-braies-O453M2Liufs" target="_blank" rel="noreferrer">Photo: Luca Bravo / Unsplash</a></figcaption>
+                            </figure>
+                            <div class="max-w-xl" aria-live="polite">
+                                <p class="mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-lake"><span class="text-clay">01</span> South Tyrol, Italy</p>
+                                <h3 class="mb-4 font-display text-4xl font-semibold text-forest sm:text-5xl">Lago di Braies</h3>
+                                <p class="max-w-prose leading-8 text-ink/75">Wooden boats glide across turquoise water beneath forested slopes and limestone peaks. Walk the lakeshore for a quieter view of the Dolomites.</p>
+                            </div>
+                        </article>
+                        <article class="destination_slide grid items-center gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14" role="group" aria-roledescription="slide" aria-label="2 of 3" hidden>
+                            <figure class="group relative aspect-[1.25] min-w-0 overflow-hidden rounded-sm bg-mist sm:aspect-[1.55]">
+                                <img class="h-full w-full object-cover transition duration-700" src="./Assets/destination-alpe-siusi.jpg" alt="Jagged Seceda peaks above the alpine meadows of Alpe di Siusi" loading="lazy">
+                                <figcaption class="absolute bottom-3 left-3 rounded-sm bg-forest/85 px-3 py-1 text-[11px] text-white"><a href="https://unsplash.com/photos/seceda-mountain-peaks-in-the-dolomites-p7S6AxykCl0" target="_blank" rel="noreferrer">Photo: Michiel Ronde / Unsplash</a></figcaption>
+                            </figure>
+                            <div class="max-w-xl" aria-live="polite">
+                                <p class="mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-lake"><span class="text-clay">02</span> South Tyrol, Italy</p>
+                                <h3 class="mb-4 font-display text-4xl font-semibold text-forest sm:text-5xl">Alpe di Siusi</h3>
+                                <p class="max-w-prose leading-8 text-ink/75">Open alpine meadows stretch beneath the jagged Sassolungo peaks. The high plateau offers a broad, peaceful perspective on the Dolomites.</p>
+                            </div>
+                        </article>
+                        <article class="destination_slide grid items-center gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14" role="group" aria-roledescription="slide" aria-label="3 of 3" hidden>
+                            <figure class="group relative aspect-[1.25] min-w-0 overflow-hidden rounded-sm bg-mist sm:aspect-[1.55]">
+                                <img class="h-full w-full object-cover transition duration-700" src="./Assets/destination-tre-cime.jpg" alt="The three distinctive peaks of Tre Cime di Lavaredo" loading="lazy">
+                                <figcaption class="absolute bottom-3 left-3 rounded-sm bg-forest/85 px-3 py-1 text-[11px] text-white"><a href="https://unsplash.com/photos/tre-cime-di-lavaredo-italy-BC8a5ui_qYk" target="_blank" rel="noreferrer">Photo: Jovana Askrabic / Unsplash</a></figcaption>
+                            </figure>
+                            <div class="max-w-xl" aria-live="polite">
+                                <p class="mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-lake"><span class="text-clay">03</span> Sexten Dolomites, Italy</p>
+                                <h3 class="mb-4 font-display text-4xl font-semibold text-forest sm:text-5xl">Tre Cime di Lavaredo</h3>
+                                <p class="max-w-prose leading-8 text-ink/75">Three limestone towers rise above celebrated high-mountain trails. Follow the paths for changing views of one of the Dolomites' most recognizable silhouettes.</p>
+                            </div>
+                        </article>
+                        <div class="mt-6 grid grid-cols-[3rem_1fr_3rem] items-center gap-4">
+                            <button class="destination_arrow destination_previous grid size-12 place-items-center rounded-full border border-forest/20 text-forest transition hover:bg-forest hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay" type="button" aria-label="Previous destination">
+                                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                            </button>
+                            <div class="flex items-center justify-center gap-2" role="group" aria-label="Choose a destination">
+                                <button class="destination_dot size-2 rounded-full bg-lake transition-all" type="button" aria-label="Show Lago di Braies" aria-current="true"></button>
+                                <button class="destination_dot size-2 rounded-full bg-lake transition-all" type="button" aria-label="Show Alpe di Siusi" aria-current="false"></button>
+                                <button class="destination_dot size-2 rounded-full bg-lake transition-all" type="button" aria-label="Show Tre Cime di Lavaredo" aria-current="false"></button>
+                            </div>
+                            <button class="destination_arrow destination_next grid size-12 place-items-center rounded-full border border-forest/20 text-forest transition hover:bg-forest hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay" type="button" aria-label="Next destination">
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Contact details, hotel location, and closing note -->
+        <footer class="bg-forest py-12 text-white sm:py-14">
+            <div class="container mx-auto grid w-[min(90%,1280px)] gap-9 md:grid-cols-[1fr_0.9fr_1.2fr] md:gap-12">
+                <div>
+                    <h2 class="mb-3 font-display text-2xl font-semibold">Grand Hotel Misurina</h2>
+                    <p class="max-w-xs leading-7 text-white/70">Where the lake meets the peaks, a quieter kind of escape begins.</p>
+                </div>
+                <div>
+                    <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-sun">Contact</p>
+                    <h3 class="font-semibold">Elena Rossi</h3>
+                    <p class="mt-1 text-sm text-white/70">Guest Relations <span class="mt-1 block text-xs">Sample contact</span></p>
+                    <a class="mt-4 inline-block border-b border-white/40 pb-1 text-sm transition hover:border-sun hover:text-sun" href="mailto:hello@example.com">hello@example.com</a>
+                </div>
+                <div>
+                    <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-sun">Find us</p>
+                    <address class="mb-4 text-sm not-italic leading-6 text-white/70">Via Monte Piana, 21<br>32041 Misurina (Auronzo di Cadore), Belluno, Italy</address>
+                    <iframe
+                        class="h-48 w-full rounded-sm bg-mist"
+                        title="Map showing Grand Hotel Misurina at Via Monte Piana 21"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=12.2436311%2C46.5794138%2C12.2636311%2C46.5894138&amp;layer=mapnik&amp;marker=46.5844138%2C12.2536311"
+                        loading="lazy">
+                    </iframe>
+                    <a class="mt-3 inline-block border-b border-white/40 pb-1 text-xs transition hover:border-sun hover:text-sun" href="https://www.openstreetmap.org/?mlat=46.5844138&amp;mlon=12.2536311#map=16/46.5844138/12.2536311" target="_blank" rel="noreferrer">Open in OpenStreetMap</a>
+                </div>
+            </div>
+            <div class="container mx-auto mt-10 flex w-[min(90%,1280px)] flex-col gap-2 border-t border-white/15 pt-5 text-xs text-white/60 sm:flex-row sm:justify-between">
+                <p>Student project for educational purposes. Not affiliated with or endorsed by Grand Hotel Misurina.</p>
+                <p>Map data &copy; <a class="text-white transition hover:text-sun" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a></p>
+            </div>
+        </footer>
+
+        <!-- Page interactions -->
+        <script src="./JS/main.js"></script>
+    </body>
+</html>

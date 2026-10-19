@@ -2,8 +2,8 @@
   "scripts": {
     "build:css": "tailwindcss -i ./CSS/tailwind.css -o ./CSS/output.css",
     "watch:css": "tailwindcss -i ./CSS/tailwind.css -o ./CSS/output.css --watch",
-    "api": "node JS/server.js",
-    "serve:php": "php -S localhost:8000 -t ."
+    "api": "node app/server.js",
+    "serve:php": "php -S localhost:8000 -t . php-router.php"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",

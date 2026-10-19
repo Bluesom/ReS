@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(?:app|database|node_modules)(?:/|$) - [F,L,NC]
+    RewriteRule ^(?:package(?:-lock)?\.json|php-router\.php|README\.md)$ - [F,L,NC]
+</IfModule>
