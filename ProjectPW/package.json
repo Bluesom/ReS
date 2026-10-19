@@ -1,6 +1,7 @@
 {
   "scripts": {
     "build:css": "tailwindcss -i ./CSS/tailwind.css -o ./CSS/output.css",
+<<<<<<< HEAD
     "watch:css": "tailwindcss -i ./CSS/tailwind.css -o ./CSS/output.css --watch"
   },
   "dependencies": {
@@ -8,3 +9,19 @@
     "tailwindcss": "^4.3.3"
   }
 }
+=======
+    "watch:css": "tailwindcss -i ./CSS/tailwind.css -o ./CSS/output.css --watch",
+    "api": "node JS/server.js",
+    "serve:php": "php -S localhost:8000 -t ."
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "i18n-iso-countries": "^7.14.0",
+    "libphonenumber-js": "^1.13.15",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "json-server": "0.17.4"
+  }
+}
+>>>>>>> main

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Book a Stay | Grand Hotel Misurina</title>
+		<meta name="description" content="Plan your stay beside Lake Misurina at Grand Hotel Misurina.">
+		<link rel="stylesheet" href="./CSS/output.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+	</head>
+	<body class="bg-paper font-sans text-ink antialiased">
+		<!-- Shared site navigation -->
+		<nav class="fixed inset-x-0 top-0 z-50 h-20 bg-forest transition-all duration-300">
+			<div class="container mx-auto flex h-full w-[min(90%,1280px)] items-center justify-between">
+				<a class="nav-brand font-display text-lg font-semibold text-white sm:text-xl" href="./index.php">
+					<h4>Grand Hotel Misurina</h4>
+				</a>
+				<ul class="nav_menu invisible pointer-events-none absolute right-0 top-[calc(100%+0.75rem)] z-20 flex w-[min(20rem,calc(100vw-2rem))] translate-y-2 flex-col gap-1 rounded-md border border-white/10 bg-forest p-2 opacity-0 shadow-2xl transition-all duration-200 md:visible md:pointer-events-auto md:static md:w-auto md:translate-y-0 md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0 md:opacity-100 md:shadow-none" id="primary-navigation">
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Home">Explore Hotels</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#About">Our Story</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Deals">Deals &amp; Offers</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Destinations">Destinations</a></li>
+					<li><a class="nav-auth-login" href="./login.php#login"><span>Log in</span><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></a></li>
+				</ul>
+				<button class="nav_toggle grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white hover:text-forest focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sun md:hidden" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+					<i class="fa-solid fa-bars" aria-hidden="true"></i>
+				</button>
+			</div>
+		</nav>
+
+		<main class="min-h-svh pt-20" aria-label="Booking page">
+			<!-- Booking page introduction -->
+			<section class="booking-hero py-16 text-white sm:py-24">
+				<div class="container mx-auto w-[min(90%,1120px)]">
+					<p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-sun">Your alpine escape starts here</p>
+					<h1 class="font-display text-5xl font-semibold leading-none text-white sm:text-7xl">Plan your stay</h1>
+					<p class="mt-5 max-w-2xl leading-7 text-white/85">Share your preferred dates and we’ll help you plan a lakeside stay in the Dolomites.</p>
+				</div>
+			</section>
+			<!-- Availability request form and hotel details -->
+			<section class="py-14 sm:py-20">
+				<div class="container mx-auto grid w-[min(90%,1120px)] gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+					<aside class="max-w-sm">
+						<p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-clay">A little more information</p>
+						<h2 class="font-display text-3xl font-semibold text-forest">A slower kind of getaway.</h2>
+						<p class="mt-4 leading-7 text-ink/75">Wake to mountain air, spend the day exploring nearby trails, and return to the stillness of Lake Misurina.</p>
+						<div class="mt-8 border-t border-forest/15 pt-5">
+							<p class="text-xs font-bold uppercase tracking-[0.16em] text-clay">Find us</p>
+							<address class="mt-2 text-sm not-italic leading-6 text-ink/75">Via Monte Piana, 21<br>32041 Misurina (Auronzo di Cadore), Belluno, Italy</address>
+							<a class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-forest underline decoration-clay underline-offset-4" href="mailto:hello@example.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> hello@example.com</a>
+						</div>
+					</aside>
+					<div>
+						<h2 class="mb-7 font-display text-3xl font-semibold text-forest">Request availability</h2>
+						<form class="grid gap-5 sm:grid-cols-2" id="booking-request-form">
+							<div class="grid gap-2">
+								<label class="text-sm font-semibold text-ink" for="arrival">Arrival</label>
+								<input class="min-h-12 rounded-sm border border-forest/20 bg-white px-4 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="arrival" name="arrival" type="date" required>
+							</div>
+							<div class="grid gap-2">
+								<label class="text-sm font-semibold text-ink" for="departure">Departure</label>
+								<input class="min-h-12 rounded-sm border border-forest/20 bg-white px-4 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="departure" name="departure" type="date" required>
+							</div>
+							<div class="grid gap-2">
+								<label class="text-sm font-semibold text-ink" for="guests">Guests</label>
+								<select class="min-h-12 rounded-sm border border-forest/20 bg-white px-4 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="guests" name="guests">
+									<option value="1">1 guest</option>
+									<option value="2" selected>2 guests</option>
+									<option value="3">3 guests</option>
+									<option value="4">4 guests</option>
+								</select>
+							</div>
+							<div class="grid gap-2">
+								<label class="text-sm font-semibold text-ink" for="room-type">Room type</label>
+								<select class="min-h-12 rounded-sm border border-forest/20 bg-white px-4 text-ink outline-none transition focus:border-lake focus:ring-2 focus:ring-lake/20" id="room-type" name="roomTypeId" required disabled>
+									<option value="">Loading room types…</option>
+								</select>
+							</div>
+							<div id="room-type-preview" class="hidden overflow-hidden rounded-sm border border-forest/10 bg-paper sm:col-span-2" aria-live="polite"></div>
+							<button class="booking_submit mt-2 sm:col-span-2 sm:justify-self-start" type="submit">
+								<span class="hero_cta_body">Check availability</span>
+								<span class="hero_cta_icon" aria-hidden="true"><i class="fa-solid fa-location-arrow"></i></span>
+							</button>
+							<p class="hidden rounded-sm border border-lake/30 bg-mist p-4 text-sm leading-6 text-forest sm:col-span-2" id="booking-form-status" role="status" aria-live="polite"></p>
+						</form>
+						<p class="mt-5 text-xs leading-5 text-ink/55">Your request is saved as pending for hotel review. It is not confirmed until the hotel approves it.</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Hotel contact information and location -->
+		<footer class="bg-forest py-12 text-white sm:py-14">
+			<div class="container mx-auto grid w-[min(90%,1280px)] gap-9 md:grid-cols-[1fr_0.9fr_1.2fr] md:gap-12">
+				<div>
+					<h2 class="mb-3 font-display text-2xl font-semibold">Grand Hotel Misurina</h2>
+					<p class="max-w-xs leading-7 text-white/70">Where the lake meets the peaks, a quieter kind of escape begins.</p>
+				</div>
+				<div>
+					<p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-sun">Contact</p>
+					<h3 class="font-semibold">Elena Rossi</h3>
+					<p class="mt-1 text-sm text-white/70">Guest Relations <span class="mt-1 block text-xs">Sample contact</span></p>
+					<a class="mt-4 inline-block border-b border-white/40 pb-1 text-sm transition hover:border-sun hover:text-sun" href="mailto:hello@example.com">hello@example.com</a>
+				</div>
+				<div>
+					<p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-sun">Find us</p>
+					<address class="mb-4 text-sm not-italic leading-6 text-white/70">Via Monte Piana, 21<br>32041 Misurina (Auronzo di Cadore), Belluno, Italy</address>
+					<iframe
+						class="h-48 w-full rounded-sm bg-mist"
+						title="Map showing Grand Hotel Misurina at Via Monte Piana 21"
+						src="https://www.openstreetmap.org/export/embed.html?bbox=12.2436311%2C46.5794138%2C12.2636311%2C46.5894138&amp;layer=mapnik&amp;marker=46.5844138%2C12.2536311"
+						loading="lazy">
+					</iframe>
+					<a class="mt-3 inline-block border-b border-white/40 pb-1 text-xs transition hover:border-sun hover:text-sun" href="https://www.openstreetmap.org/?mlat=46.5844138&amp;mlon=12.2536311#map=16/46.5844138/12.2536311" target="_blank" rel="noreferrer">Open in OpenStreetMap</a>
+				</div>
+			</div>
+			<div class="container mx-auto mt-10 flex w-[min(90%,1280px)] flex-col gap-2 border-t border-white/15 pt-5 text-xs text-white/60 sm:flex-row sm:justify-between">
+				<p>Student project for educational purposes. Not affiliated with or endorsed by Grand Hotel Misurina.</p>
+				<p>Map data &copy; <a class="text-white transition hover:text-sun" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a></p>
+			</div>
+		</footer>
+
+		<!-- Shared page interactions -->
+		<script src="./JS/main.js"></script>
+	</body>
+</html>
