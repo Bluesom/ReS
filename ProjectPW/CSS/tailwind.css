@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import "tailwindcss";
-
-=======
 /* Fonts and Tailwind entry point */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 /* Shared design tokens */
->>>>>>> main
 @theme {
     --font-sans: "Poppins", sans-serif;
     --font-display: "Poppins", sans-serif;
@@ -21,10 +15,7 @@
     --color-sun: #c6a76b;
 }
 
-<<<<<<< HEAD
-=======
 /* Base document styles */
->>>>>>> main
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
@@ -35,14 +26,6 @@ body {
     line-height: 1.7;
 }
 
-<<<<<<< HEAD
-.hero-shell {
-    background-image:
-    radial-gradient(ellipse at left bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 45%, rgba(0, 0, 0, 0.08) 100%),
-        url("../Assets/906353463.jpg");
-}
-
-=======
 /* Keep all dashboard dialogs centered and scrollable on shorter screens */
 .dashboard-dialog[open] {
     position: fixed;
@@ -68,7 +51,6 @@ body {
     background-size: cover;
 }
 
->>>>>>> main
 .auth-visual {
     position: relative;
     isolation: isolate;
@@ -94,10 +76,7 @@ body {
     background-image: url("../Assets/destination-tre-cime.jpg");
 }
 
-<<<<<<< HEAD
-=======
 /* Shared navigation and account controls */
->>>>>>> main
 .window-scroll {
     background: rgba(25, 51, 47, 0.94);
     box-shadow: 0 12px 36px rgba(13, 29, 27, 0.18);
@@ -167,16 +146,10 @@ body {
     opacity: 1;
 }
 
-<<<<<<< HEAD
-.hero_cta {
-    position: absolute;
-    right: 10%;
-=======
 /* Landing-page hero and booking call to action */
 .hero_cta {
     position: absolute;
     right: 3%;
->>>>>>> main
     bottom: 3rem;
     display: inline-flex;
     align-items: center;
@@ -301,10 +274,7 @@ body {
     line-height: 1.1;
 }
 
-<<<<<<< HEAD
-=======
 /* Hero positioning and hotel gallery interactions */
->>>>>>> main
 #Home .hero_title,
 #Home p {
     position: relative;
@@ -312,9 +282,6 @@ body {
 }
 
 .about_gallery_item:first-child {
-<<<<<<< HEAD
-    grid-row: 1 / span 2;
-=======
     grid-row: 1;
 }
 
@@ -322,7 +289,6 @@ body {
     .about_gallery_item:first-child {
         grid-row: 1 / span 2;
     }
->>>>>>> main
 }
 
 .about_gallery_item.is-enlarged,
@@ -364,10 +330,7 @@ body {
     box-shadow: 0 12px 28px rgba(18, 35, 28, 0.28);
 }
 
-<<<<<<< HEAD
-=======
 /* Responsive hero and gallery layouts */
->>>>>>> main
 @media (max-width: 1080px) {
     .hero_title {
         font-size: 4.6rem;
@@ -395,12 +358,6 @@ body {
         font-size: 3.4rem;
     }
 
-<<<<<<< HEAD
-    .about_gallery_item:first-child {
-        grid-row: 1 / span 2;
-    }
-=======
->>>>>>> main
 }
 
 @media (max-width: 420px) {
@@ -429,10 +386,7 @@ body {
     }
 }
 
-<<<<<<< HEAD
-=======
 /* Destination carousel */
->>>>>>> main
 .destination_slide.is-active {
     animation: destination-reveal 420ms ease both;
 }
@@ -492,10 +446,7 @@ body {
     transition: --cursor-x 120ms ease-out, --cursor-y 120ms ease-out, --cursor-opacity 240ms ease;
 }
 
-<<<<<<< HEAD
-=======
 /* Mobile navigation and reduced-motion preferences */
->>>>>>> main
 @media (max-width: 767px) {
     .nav_menu.is-open {
         transform: translateY(0);
@@ -516,12 +467,7 @@ body {
     }
 }
 
-<<<<<<< HEAD
-/* Tambahkan ke file CSS sumber Tailwind kamu (yang berisi @import "tailwindcss"), lalu rebuild output.css */
-
-=======
 /* Guest profile components */
->>>>>>> main
 .profile-tab {
     display: flex;
     align-items: center;
@@ -558,16 +504,6 @@ body {
     }
 }
 
-<<<<<<< HEAD
-/* Banner di belakang header profil. Taruh gambar di Assets/profile-banner.jpg */
-.profile-banner {
-    background-image:
-        linear-gradient(180deg, rgba(21, 45, 38, 0.55) 0%, rgba(21, 45, 38, 0.85) 100%),
-        url("../Assets/profile-banner.jpg");
-    background-position: center;
-    background-size: cover;
-    background-color: #28483c;
-=======
 .profile-banner {
     background-image:
         linear-gradient(180deg, rgba(21, 45, 38, 0.55) 0%, rgba(21, 45, 38, 0.85) 100%),
@@ -641,5 +577,4 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
 
->>>>>>> main
 }

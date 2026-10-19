@@ -1,9 +1,4 @@
 const API_BASE_URL = 'http://localhost:3000';
-<<<<<<< HEAD
-
-const fetchBookings = async () => {
-    const response = await fetch(`${API_BASE_URL}/bookings`);
-=======
 const getAdminHeaders = (headers = {}) => ({
     ...headers,
     Authorization: `Bearer ${sessionStorage.getItem('adminToken') || ''}`,
@@ -11,45 +6,22 @@ const getAdminHeaders = (headers = {}) => ({
 
 const fetchBookings = async () => {
     const response = await fetch(`${API_BASE_URL}/bookings`, { headers: getAdminHeaders() });
->>>>>>> main
     if (!response.ok) throw new Error('Failed to load bookings from server.');
     return await response.json();
 };
 
 const fetchRooms = async () => {
-<<<<<<< HEAD
-    const response = await fetch(`${API_BASE_URL}/rooms`);
-=======
     const response = await fetch(`${API_BASE_URL}/rooms`, { headers: getAdminHeaders() });
->>>>>>> main
     if (!response.ok) throw new Error('Failed to load rooms from server.');
     return await response.json();
 };
 
 const fetchGuests = async () => {
-<<<<<<< HEAD
-    const response = await fetch(`${API_BASE_URL}/guests`);
-=======
     const response = await fetch(`${API_BASE_URL}/guests`, { headers: getAdminHeaders() });
->>>>>>> main
     if (!response.ok) throw new Error('Failed to load guests from server.');
     return await response.json();
 };
 
-<<<<<<< HEAD
-const updateBookingStatus = async (bookingId, newStatus) => {
-    const response = await fetch(`${API_BASE_URL}/bookings/${bookingId}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ status: newStatus }),
-    });
-    if (!response.ok) throw new Error('Failed to update booking status.');
-    return await response.json();
-};
-
-=======
 const fetchRoomTypes = async () => {
     const response = await fetch(`${API_BASE_URL}/roomTypes`, { headers: getAdminHeaders() });
     if (!response.ok) throw new Error('Failed to load room types from server.');
@@ -129,19 +101,14 @@ const deleteOffer = async (offerId) => {
     throw new Error(result.error || 'Could not delete the offer.')
 }
 
->>>>>>> main
 // --- GLOBAL STATE ---
 
 const state = {
     bookings: [],
     rooms: [],
-<<<<<<< HEAD
-    guests: [],
-=======
     roomTypes: [],
     guests: [],
     offers: [],
->>>>>>> main
     filters: {
         status: 'all',   // 'all' | 'confirmed' | 'pending' | 'checked-in' | 'checked-out' | 'cancelled'
         search: '',      // matched against guest name and email, case-insensitive
@@ -156,23 +123,6 @@ const STATUS_BADGE_STYLES = {
     'checked-in': 'bg-forest text-white',
     'checked-out': 'bg-mist text-ink/60',
     cancelled: 'bg-clay/15 text-clay',
-<<<<<<< HEAD
-}
-
-const formatStatusLabel = (status) =>
-    status.split('-').map((word) => word[0].toUpperCase() + word.slice(1)).join(' ')
-
-const renderStatusBadge = (status) => {
-    const classes = STATUS_BADGE_STYLES[status] || 'bg-mist text-ink/60'
-    return `<span class="status-badge ${classes}">${formatStatusLabel(status)}</span>`
-}
-
-const formatDate = (isoDate) =>
-    new Date(`${isoDate}T00:00:00`).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
-
-const formatCurrency = (amount) =>
-    amount.toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
-=======
     overdue: 'bg-clay/15 text-clay',
     active: 'bg-lake/20 text-forest',
     inactive: 'bg-mist text-ink/60',
@@ -218,7 +168,6 @@ const formatDate = (isoDate) => {
 const formatCurrency = (amount) =>
     (Number.isFinite(Number(amount)) ? Number(amount) : 0)
         .toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
->>>>>>> main
 
 // --- KPI CALCULATIONS & RENDERING ---
 
@@ -228,15 +177,6 @@ const calculateKpis = (bookings, rooms) => {
     const revenueStatuses = new Set(['confirmed', 'checked-in', 'checked-out'])
     const totalRevenue = bookings
         .filter((booking) => revenueStatuses.has(booking.status))
-<<<<<<< HEAD
-        .reduce((sum, booking) => sum + booking.totalAmount, 0)
-
-    const occupiedRooms = rooms.filter((room) => room.status === 'occupied').length
-    const occupancyRate = rooms.length ? Math.round((occupiedRooms / rooms.length) * 100) : 0
-
-    const todaysCheckIns = bookings.filter(
-        (booking) => booking.checkIn === todayIso && booking.status !== 'cancelled'
-=======
         .reduce((sum, booking) => sum + (Number.isFinite(Number(booking.totalAmount)) ? Number(booking.totalAmount) : 0), 0)
 
     const occupiedRooms = rooms.filter((room) => getRoomStay(room).status === 'occupied').length
@@ -244,7 +184,6 @@ const calculateKpis = (bookings, rooms) => {
 
     const todaysCheckIns = bookings.filter(
         (booking) => booking.checkIn === todayIso && booking.status === 'confirmed'
->>>>>>> main
     ).length
 
     const pendingBookings = bookings.filter((booking) => booking.status === 'pending').length
@@ -278,11 +217,6 @@ const renderKpiCards = (kpis) => {
 // --- TABLE RENDERING FUNCTIONS ---
 
 const renderRecentBookings = (bookings) => {
-<<<<<<< HEAD
-    const recent = [...bookings].sort((a, b) => (a.checkIn < b.checkIn ? 1 : -1)).slice(0, 5)
-    const body = document.querySelector('#recent-bookings-body')
-
-=======
     const recent = [...bookings].sort((a, b) =>
         String(b.createdAt || b.checkIn).localeCompare(String(a.createdAt || a.checkIn))
     ).slice(0, 5)
@@ -293,22 +227,14 @@ const renderRecentBookings = (bookings) => {
         return
     }
 
->>>>>>> main
     body.innerHTML = recent
         .map(
             (booking) => `
         <tr class="border-b border-forest/5 last:border-0">
-<<<<<<< HEAD
-            <td class="py-2 pr-4">${booking.guestName}</td>
-            <td class="py-2 pr-4 text-ink/70">${booking.roomType}</td>
-            <td class="py-2 pr-4 text-ink/70">${formatDate(booking.checkIn)}</td>
-            <td class="py-2">${renderStatusBadge(booking.status)}</td>
-=======
             <td class="py-2 pr-4"><span class="font-medium">${escapeHtml(booking.guestName)}</span><span class="ml-2 text-xs text-ink/50">${escapeHtml(booking.guestNumber || '')}</span></td>
             <td class="py-2 pr-4 text-ink/70">${escapeHtml(booking.roomType)}</td>
             <td class="py-2 pr-4 text-ink/70">${formatDate(booking.checkIn)}</td>
             <td class="py-2">${renderStatusBadge(getBookingDisplayStatus(booking))}</td>
->>>>>>> main
         </tr>`
         )
         .join('')
@@ -321,27 +247,15 @@ const renderBookingsTable = () => {
 
     emptyState.classList.toggle('hidden', filtered.length > 0)
 
-<<<<<<< HEAD
-=======
     if (!filtered.length) {
         body.innerHTML = ''
         return
     }
 
->>>>>>> main
     body.innerHTML = filtered
         .map(
             (booking) => `
         <tr class="hover:bg-paper/60">
-<<<<<<< HEAD
-            <td class="px-5 py-3 font-medium text-ink">${booking.guestName}</td>
-            <td class="px-5 py-3 text-ink/70">${booking.roomType}</td>
-            <td class="px-5 py-3 text-ink/70">${formatDate(booking.checkIn)}</td>
-            <td class="px-5 py-3 text-ink/70">${formatDate(booking.checkOut)}</td>
-            <td class="px-5 py-3">${renderStatusBadge(booking.status)}</td>
-            <td class="px-5 py-3 text-right">
-                <button type="button" class="view-booking-btn rounded-full border border-forest/20 px-3 py-1 text-xs font-semibold text-forest transition hover:bg-forest hover:text-white" data-booking-id="${booking.id}">
-=======
             <td class="px-5 py-3"><span class="font-medium text-ink">${escapeHtml(booking.guestName)}</span><span class="ml-2 text-xs text-ink/50">${escapeHtml(booking.guestNumber || '')}</span></td>
             <td class="px-5 py-3 text-ink/70">${escapeHtml(booking.roomType)}</td>
             <td class="px-5 py-3 text-ink/70">${formatDate(booking.checkIn)}</td>
@@ -349,7 +263,6 @@ const renderBookingsTable = () => {
             <td class="px-5 py-3">${renderStatusBadge(getBookingDisplayStatus(booking))}</td>
             <td class="px-5 py-3 text-right">
                 <button type="button" class="view-booking-btn rounded-full border border-forest/20 px-3 py-1 text-xs font-semibold text-forest transition hover:bg-forest hover:text-white" data-booking-id="${escapeHtml(booking.id)}">
->>>>>>> main
                     View
                 </button>
             </td>
@@ -360,10 +273,6 @@ const renderBookingsTable = () => {
 
 const ROOM_STATUS_STYLES = {
     available: 'bg-lake/20 text-forest',
-<<<<<<< HEAD
-    occupied: 'bg-forest text-white',
-    maintenance: 'bg-clay/15 text-clay',
-=======
     booked: 'bg-sun/25 text-[#7a5a1e]',
     pending: 'bg-sun/25 text-[#7a5a1e]',
     occupied: 'bg-forest text-white',
@@ -402,26 +311,10 @@ const getRoomStay = (room) => {
     if (booking.status === 'checked-in') return { status: 'occupied', booking }
     if (booking.checkIn < today) return { status: 'overdue', booking }
     return { status: 'booked', booking }
->>>>>>> main
 }
 
 const renderRoomsTable = (rooms) => {
     const body = document.querySelector('#rooms-table-body')
-<<<<<<< HEAD
-    body.innerHTML = rooms
-        .map(
-            (room) => `
-        <tr class="hover:bg-paper/60">
-            <td class="px-5 py-3 font-medium text-ink">Room ${room.roomNumber}</td>
-            <td class="px-5 py-3 text-ink/70">${room.type}</td>
-            <td class="px-5 py-3 text-ink/70">${room.floor}</td>
-            <td class="px-5 py-3 text-ink/70">${formatCurrency(room.ratePerNight)}</td>
-            <td class="px-5 py-3">
-                <span class="status-badge ${ROOM_STATUS_STYLES[room.status] || 'bg-mist text-ink/60'}">
-                    ${formatStatusLabel(room.status)}
-                </span>
-            </td>
-=======
     document.querySelector('#rooms-empty-state').classList.toggle('hidden', rooms.length > 0)
     body.innerHTML = rooms
         .map((room) => {
@@ -498,27 +391,11 @@ const renderGuestsTable = (guests) => {
                 <button type="button" class="guest-edit-btn rounded-full border border-forest/20 px-3 py-1 text-xs font-semibold text-forest hover:bg-mist" data-guest-id="${escapeHtml(guest.id)}">Edit</button>
                 <button type="button" class="guest-toggle-btn rounded-full border border-clay/30 px-3 py-1 text-xs font-semibold text-clay hover:bg-clay/10" data-guest-id="${escapeHtml(guest.id)}" data-active="${guest.active === false ? 'false' : 'true'}">${guest.active === false ? 'Reactivate' : 'Deactivate'}</button>
             </div></td>
->>>>>>> main
         </tr>`
         )
         .join('')
 }
 
-<<<<<<< HEAD
-const renderGuestsTable = (guests) => {
-    const body = document.querySelector('#guests-table-body')
-    body.innerHTML = guests
-        .map(
-            (guest) => `
-        <tr class="hover:bg-paper/60">
-            <td class="px-5 py-3 font-medium text-ink">${guest.name}</td>
-            <td class="px-5 py-3 text-ink/70">${guest.email}</td>
-            <td class="px-5 py-3 text-ink/70">${guest.totalBookings}</td>
-            <td class="px-5 py-3 text-ink/70">${formatDate(guest.lastStay)}</td>
-        </tr>`
-        )
-        .join('')
-=======
 const offerIsCurrentlyActive = (offer) => {
     const today = new Date().toISOString().slice(0, 10)
     return offer.active && offer.startDate <= today && offer.endDate >= today
@@ -579,7 +456,6 @@ const renderNotifications = (bookings) => {
                 <span class="block text-xs text-ink/50">${formatDate(booking.checkIn)} · ${escapeHtml(booking.roomType)}</span>
             </div>`).join('')
         : '<p class="px-3 py-4 text-sm text-ink/50">No pending booking requests.</p>'
->>>>>>> main
 }
 
 const renderAll = () => {
@@ -587,15 +463,11 @@ const renderAll = () => {
     renderRecentBookings(state.bookings)
     renderBookingsTable()
     renderRoomsTable(state.rooms)
-<<<<<<< HEAD
-    renderGuestsTable(state.guests)
-=======
     renderRoomInventory()
     renderRoomTypes()
     renderGuestsTable(state.guests)
     renderOffersTable(state.offers)
     renderNotifications(state.bookings)
->>>>>>> main
 }
 
 // --- FILTER & SEARCH LOGIC ---
@@ -605,16 +477,10 @@ const getFilteredBookings = () => {
     const searchTerm = search.trim().toLowerCase()
 
     return state.bookings.filter((booking) => {
-<<<<<<< HEAD
-        const matchesStatus = status === 'all' || booking.status === status
-        const matchesSearch =
-            searchTerm === '' ||
-=======
         const matchesStatus = status === 'all' || getBookingDisplayStatus(booking) === status
         const matchesSearch =
             searchTerm === '' ||
             (booking.guestNumber || '').toLowerCase().includes(searchTerm) ||
->>>>>>> main
             booking.guestName.toLowerCase().includes(searchTerm) ||
             booking.email.toLowerCase().includes(searchTerm)
 
@@ -648,19 +514,12 @@ const openBookingModal = (bookingId) => {
     document.querySelector('#modal-guest-name').textContent = booking.guestName
     document.querySelector('#modal-guest-email').textContent = booking.email
     document.querySelector('#modal-room-type').textContent = booking.roomType
-<<<<<<< HEAD
-=======
     const assignedRoom = state.rooms.find((room) => room.id === booking.roomId)
     document.querySelector('#modal-assigned-room').textContent = assignedRoom ? `Room ${assignedRoom.roomNumber}` : 'Not assigned'
->>>>>>> main
     document.querySelector('#modal-guest-count').textContent = booking.guests
     document.querySelector('#modal-check-in').textContent = formatDate(booking.checkIn)
     document.querySelector('#modal-check-out').textContent = formatDate(booking.checkOut)
     document.querySelector('#modal-total').textContent = formatCurrency(booking.totalAmount)
-<<<<<<< HEAD
-    document.querySelector('#modal-requests').textContent = booking.requests
-    document.querySelector('#modal-status-select').value = booking.status
-=======
     document.querySelector('#modal-requests').textContent = booking.requests || 'None'
     document.querySelector('#modal-status-select').value = booking.status
     const roomSelect = document.querySelector('#modal-room-select')
@@ -695,15 +554,12 @@ const openBookingModal = (bookingId) => {
         .join('')
     offerSelect.value = currentOffer?.id || ''
     updateBookingOfferPreview(booking)
->>>>>>> main
 
     const modal = document.querySelector('#booking-modal')
     modal.classList.remove('hidden')
     modal.classList.add('flex')
 }
 
-<<<<<<< HEAD
-=======
 const updateBookingOfferPreview = (booking) => {
     const selectedId = document.querySelector('#modal-offer-select').value
     const selectedOffer = state.offers.find((offer) => offer.id === selectedId) ||
@@ -719,7 +575,6 @@ const updateBookingOfferPreview = (booking) => {
         : `Base amount: ${formatCurrency(baseAmount)}`
 }
 
->>>>>>> main
 const closeBookingModal = () => {
     const modal = document.querySelector('#booking-modal')
     modal.classList.add('hidden')
@@ -727,14 +582,6 @@ const closeBookingModal = () => {
     activeBookingId = null
 }
 
-<<<<<<< HEAD
-const handleModalSave = async () => {
-    if (!activeBookingId) return
-
-    const newStatus = document.querySelector('#modal-status-select').value
-    try {
-        await updateBookingStatus(activeBookingId, newStatus)
-=======
 const openOfferModal = (offer = null) => {
     const dialog = document.querySelector('#offer-modal')
     const form = document.querySelector('#offer-form')
@@ -893,7 +740,6 @@ const handleModalSave = async () => {
                 ? { ...booking, ...updatedBooking, appliedOffer: updatedBooking.appliedOffer || null }
                 : booking
         )
->>>>>>> main
         renderAll()
         closeBookingModal()
     } catch (error) {
@@ -906,12 +752,8 @@ const handleModalSave = async () => {
 const VIEW_TITLES = {
     overview: 'Overview',
     bookings: 'Bookings',
-<<<<<<< HEAD
-    rooms: 'Rooms',
-=======
     rooms: 'Room operations',
     offers: 'Manage offers',
->>>>>>> main
     guests: 'Guests',
 }
 
@@ -958,19 +800,14 @@ const toggleDropdown = (panelSelector, toggleSelector, otherPanelSelector) => {
 
 // --- INITIALIZATION & API STATE HANDLING ---
 
-<<<<<<< HEAD
-=======
 let dashboardListenersInitialized = false
 
->>>>>>> main
 const init = async () => {
     const loadingEl = document.querySelector('#api-loading')
     const errorEl = document.querySelector('#api-error')
     const errorMessageEl = document.querySelector('#api-error-message')
     const retryBtn = document.querySelector('#retry-btn')
 
-<<<<<<< HEAD
-=======
     const token = sessionStorage.getItem('adminToken')
     if (!token) {
         window.location.replace('./login.php#login')
@@ -998,25 +835,12 @@ const init = async () => {
         return
     }
 
->>>>>>> main
     // 1. LOADING STATE: Show spinner, hide error container
     loadingEl.classList.remove('hidden')
     errorEl.classList.add('hidden')
 
     try {
         // Concurrently fetch all real API endpoints
-<<<<<<< HEAD
-        const [bookings, rooms, guests] = await Promise.all([
-            fetchBookings(),
-            fetchRooms(),
-            fetchGuests()
-        ])
-
-        // Assign fetched data to global state
-        state.bookings = bookings
-        state.rooms = rooms
-        state.guests = guests
-=======
         const [bookings, rooms, guests, roomTypes, offers] = await Promise.all([
             fetchBookings(),
             fetchRooms(),
@@ -1063,7 +887,6 @@ const init = async () => {
             }
         })
         state.offers = offers
->>>>>>> main
 
         // 2. SUCCESS STATE: Hide spinner, render dashboard interface
         loadingEl.classList.add('hidden')
@@ -1082,9 +905,6 @@ const init = async () => {
         init()
     }
 
-<<<<<<< HEAD
-    // --- Event Listeners ---
-=======
     if (dashboardListenersInitialized) return
     dashboardListenersInitialized = true
 
@@ -1092,7 +912,6 @@ const init = async () => {
     document.querySelector('#refresh-dashboard').addEventListener('click', () => {
         init()
     })
->>>>>>> main
     document.querySelectorAll('.sidebar-nav-link').forEach((link) => {
         link.addEventListener('click', () => switchView(link.dataset.view))
     })
@@ -1117,8 +936,6 @@ const init = async () => {
     document.querySelector('#booking-modal').addEventListener('click', (event) => {
         if (event.target.id === 'booking-modal') closeBookingModal()
     })
-<<<<<<< HEAD
-=======
     document.querySelector('#modal-offer-select').addEventListener('change', () => {
         const booking = state.bookings.find((item) => item.id === activeBookingId)
         if (booking) updateBookingOfferPreview(booking)
@@ -1446,7 +1263,6 @@ const init = async () => {
             button.disabled = false
         }
     })
->>>>>>> main
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeBookingModal()
     })
@@ -1463,8 +1279,6 @@ const init = async () => {
         document.querySelector('#notifications-panel').classList.add('hidden')
         document.querySelector('#profile-panel').classList.add('hidden')
     })
-<<<<<<< HEAD
-=======
 
     document.querySelector('#admin-logout').addEventListener('click', async () => {
         try {
@@ -1479,7 +1293,6 @@ const init = async () => {
             window.location.replace('./login.php#login')
         }
     })
->>>>>>> main
 }
 
 // Run initialization when page loads
