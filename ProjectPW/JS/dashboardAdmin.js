@@ -810,7 +810,7 @@ const init = async () => {
 
     const token = sessionStorage.getItem('adminToken')
     if (!token) {
-        window.location.replace('./login.html#login')
+        window.location.replace('./login.php#login')
         return
     }
 
@@ -820,7 +820,7 @@ const init = async () => {
         })
         if (!response.ok) {
             sessionStorage.removeItem('adminToken')
-            window.location.replace('./login.html#login')
+            window.location.replace('./login.php#login')
             return
         }
         const admin = await response.json()
@@ -1290,7 +1290,7 @@ const init = async () => {
             console.error('Administrator logout request failed:', error)
         } finally {
             sessionStorage.removeItem('adminToken')
-            window.location.replace('./login.html#login')
+            window.location.replace('./login.php#login')
         }
     })
 }

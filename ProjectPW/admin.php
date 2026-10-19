@@ -54,7 +54,7 @@
 
         <!-- Footer note / back link to the public site -->
         <div class="border-t border-white/10 px-6 py-5">
-            <a href="./index.html" class="flex items-center gap-2 text-xs text-white/60 transition hover:text-sun">
+            <a href="./index.php" class="flex items-center gap-2 text-xs text-white/60 transition hover:text-sun">
                 <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
                 Back to public site
             </a>

@@ -25,7 +25,7 @@
                             <li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="#About">Our Story</a></li>
                             <li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="#Deals">Deals &amp; Offers</a></li>
                             <li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="#Destinations">Destinations</a></li>
-                            <li><a class="nav-auth-login" href="./login.html#login"><span>Log in</span><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></a></li>
+                            <li><a class="nav-auth-login" href="./login.php#login"><span>Log in</span><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></a></li>
                         </ul>
                         <button class="nav_toggle grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white hover:text-forest focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sun md:hidden" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
                             <i class="fa-solid fa-bars" aria-hidden="true"></i>
@@ -38,7 +38,7 @@
                         <p class="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-sun sm:text-sm">Lake Misurina · Italian Dolomites</p>
                         <h1 class="hero_title font-display font-medium text-white">Grand Hotel Misurina</h1>
                         <p class="mt-7 max-w-2xl text-base leading-8 text-white/85 sm:text-lg">Set beside Lake Misurina and framed by the Dolomites, Grand Hotel Misurina puts alpine scenery at your doorstep. Explore mountain trails and lakeside views, then return to a peaceful retreat beneath the peaks.</p>
-                        <a class="hero_cta" href="./login.html#login">
+                        <a class="hero_cta" href="./login.php#login">
                             <span class="hero_cta_body">Book Now</span>
                             <span class="hero_cta_icon" aria-hidden="true"><i class="fa-solid fa-location-arrow"></i></span>
                         </a>

@@ -12,15 +12,15 @@
 		<!-- Shared site navigation -->
 		<nav class="fixed inset-x-0 top-0 z-50 h-20 bg-forest transition-all duration-300">
 			<div class="container mx-auto flex h-full w-[min(90%,1280px)] items-center justify-between">
-				<a class="nav-brand font-display text-lg font-semibold text-white sm:text-xl" href="./index.html#Home">
+				<a class="nav-brand font-display text-lg font-semibold text-white sm:text-xl" href="./index.php#Home">
 					<h4>Grand Hotel Misurina</h4>
 				</a>
 				<ul class="nav_menu invisible pointer-events-none absolute right-0 top-[calc(100%+0.75rem)] z-20 flex w-[min(20rem,calc(100vw-2rem))] translate-y-2 flex-col gap-1 rounded-md border border-white/10 bg-forest p-2 opacity-0 shadow-2xl transition-all duration-200 md:visible md:pointer-events-auto md:static md:w-auto md:translate-y-0 md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:opacity-100 md:shadow-none" id="primary-navigation">
-					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.html#Home">Explore Hotels</a></li>
-					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.html#About">Our Story</a></li>
-					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.html#Deals">Deals &amp; Offers</a></li>
-					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.html#Destinations">Destinations</a></li>
-					<li><a class="nav-auth-login" href="./login.html#login"><span>Log in</span><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Home">Explore Hotels</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#About">Our Story</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Deals">Deals &amp; Offers</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Destinations">Destinations</a></li>
+					<li><a class="nav-auth-login" href="./login.php#login"><span>Log in</span><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></a></li>
 				</ul>
 				<button class="nav_toggle grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white hover:text-forest focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sun md:hidden" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
 					<i class="fa-solid fa-bars" aria-hidden="true"></i>
@@ -89,7 +89,7 @@
 						</div>
 						<button class="mt-1 inline-flex items-center justify-center gap-3 rounded-full bg-clay px-5 py-3 font-semibold text-white transition hover:bg-forest focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay" type="submit">Create account <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
 						<p class="hidden rounded-sm border border-lake/30 bg-mist p-4 text-sm leading-6 text-forest" role="status" aria-live="polite"></p>
-						<p class="pt-2 text-center text-sm text-ink/75">Already have an account? <a class="font-semibold text-forest underline decoration-clay underline-offset-4 transition hover:text-clay" href="./login.html#login">Log in</a>.</p>
+						<p class="pt-2 text-center text-sm text-ink/75">Already have an account? <a class="font-semibold text-forest underline decoration-clay underline-offset-4 transition hover:text-clay" href="./login.php#login">Log in</a>.</p>
 					</form>
 					<p class="mt-7 text-center text-xs leading-5 text-ink/55">Demo account data is stored locally by the project API. Passwords are hashed by the server.</p>
 				</section>

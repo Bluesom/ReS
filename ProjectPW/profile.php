@@ -12,15 +12,15 @@
 		<!-- Shared site navigation -->
 		<nav class="fixed inset-x-0 top-0 z-50 h-20 bg-forest transition-all duration-300">
 			<div class="container mx-auto flex h-full w-[min(90%,1280px)] items-center justify-between">
-				<a class="nav-brand font-display text-lg font-semibold text-white sm:text-xl" href="./index.html#Home">
+				<a class="nav-brand font-display text-lg font-semibold text-white sm:text-xl" href="./index.php#Home">
 					<h4>Grand Hotel Misurina</h4>
 				</a>
 				<ul class="nav_menu invisible pointer-events-none absolute right-0 top-[calc(100%+0.75rem)] z-20 flex w-[min(20rem,calc(100vw-2rem))] translate-y-2 flex-col gap-1 rounded-md border border-white/10 bg-forest p-2 opacity-0 shadow-2xl transition-all duration-200 md:visible md:pointer-events-auto md:static md:w-auto md:translate-y-0 md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:opacity-100 md:shadow-none" id="primary-navigation">
-					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.html#Home">Explore Hotels</a></li>
-					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.html#About">Our Story</a></li>
-					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.html#Deals">Deals &amp; Offers</a></li>
-					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.html#Destinations">Destinations</a></li>
-					<li><a class="nav-auth-login" href="./login.html#login"><span>Log in</span><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Home">Explore Hotels</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#About">Our Story</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Deals">Deals &amp; Offers</a></li>
+					<li><a class="nav-link block px-4 py-3 text-sm text-white/85 transition md:px-0 md:py-2" href="./index.php#Destinations">Destinations</a></li>
+					<li><a class="nav-auth-login" href="./login.php#login"><span>Log in</span><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></a></li>
 				</ul>
 				<button class="nav_toggle grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white hover:text-forest focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sun md:hidden" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
 					<i class="fa-solid fa-bars" aria-hidden="true"></i>
@@ -67,7 +67,7 @@
 							<button class="profile-tab" type="button" role="tab" id="tab-bookings" aria-controls="panel-bookings" aria-selected="false" data-tab="bookings" tabindex="-1"><i class="fa-regular fa-calendar-check w-5" aria-hidden="true"></i><span>My bookings</span></button>
 							<button class="profile-tab" type="button" role="tab" id="tab-security" aria-controls="panel-security" aria-selected="false" data-tab="security" tabindex="-1"><i class="fa-solid fa-lock w-5" aria-hidden="true"></i><span>Security</span></button>
 						</div>
-						<a class="mt-6 hidden items-center gap-2 text-sm font-semibold text-clay underline decoration-clay underline-offset-4 transition hover:text-forest lg:inline-flex" href="./BookOrder.html"><i class="fa-solid fa-location-arrow" aria-hidden="true"></i> Plan a new stay</a>
+						<a class="mt-6 hidden items-center gap-2 text-sm font-semibold text-clay underline decoration-clay underline-offset-4 transition hover:text-forest lg:inline-flex" href="./BookOrder.php"><i class="fa-solid fa-location-arrow" aria-hidden="true"></i> Plan a new stay</a>
 					</aside>
 
 					<div>
@@ -90,7 +90,7 @@
 						<div id="panel-bookings" role="tabpanel" aria-labelledby="tab-bookings" hidden>
 							<div class="mb-7 flex flex-wrap items-end justify-between gap-3">
 								<h2 class="font-display text-3xl font-semibold text-forest">My bookings</h2>
-								<a class="text-sm font-semibold text-clay underline decoration-clay underline-offset-4 transition hover:text-forest" href="./BookOrder.html">New request</a>
+								<a class="text-sm font-semibold text-clay underline decoration-clay underline-offset-4 transition hover:text-forest" href="./BookOrder.php">New request</a>
 							</div>
 							<ul class="grid gap-4" id="bookings-list"></ul>
 							<p class="hidden rounded-sm border border-forest/10 bg-mist p-6 text-center text-sm text-ink/70" id="bookings-empty">No booking records are linked to this account yet.</p>

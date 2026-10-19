@@ -19,12 +19,12 @@ if (authLink) {
 
     if (guestToken && guestName) {
         const firstName = guestName.trim().split(/\s+/)[0]
-        authLink.href = './profile.html'
+        authLink.href = './profile.php'
         label.textContent = `Welcome, ${firstName}`
         icon.className = 'fa-solid fa-user'
         authLink.setAttribute('aria-label', `Welcome, ${firstName}. Go to your profile`)
     } else {
-        authLink.href = './login.html#login'
+        authLink.href = './login.php#login'
         label.textContent = 'Log in'
         icon.className = 'fa-solid fa-arrow-right-to-bracket'
         authLink.removeAttribute('aria-label')
@@ -33,7 +33,7 @@ if (authLink) {
 
 const bookNowLink = document.querySelector('.hero_cta')
 if (bookNowLink) {
-    bookNowLink.href = guestToken ? './BookOrder.html' : './login.html#login'
+    bookNowLink.href = guestToken ? './BookOrder.php' : './login.php#login'
 }
 
 const publicOffers = document.querySelector('#public-offers')
@@ -316,7 +316,7 @@ document.querySelectorAll('.auth-form').forEach((form) => {
                     sessionStorage.removeItem('guestName')
                     sessionStorage.removeItem('guestEmail')
                     sessionStorage.setItem('adminToken', result.token)
-                    window.location.assign('./admin.html')
+                    window.location.assign('./admin.php')
                     return
                 }
 
@@ -324,7 +324,7 @@ document.querySelectorAll('.auth-form').forEach((form) => {
                 sessionStorage.setItem('guestToken', result.token)
                 sessionStorage.setItem('guestName', result.account.name)
                 sessionStorage.setItem('guestEmail', result.account.email)
-                window.location.assign('./index.html')
+                window.location.assign('./index.php')
             } catch (error) {
                 loginStatus.textContent = error instanceof TypeError
                     ? 'Could not connect to the account service. Make sure the API is running with npm run api.'
@@ -431,7 +431,7 @@ document.querySelectorAll('.auth-form').forEach((form) => {
 
                 if (!response.ok) throw new Error(result.error || 'Registration failed. Please try again.')
                 sessionStorage.setItem('registrationSuccess', 'Your account was created. You can now log in.')
-                window.location.assign('./login.html#login')
+                window.location.assign('./login.php#login')
             } catch (error) {
                 const message = error instanceof TypeError
                     ? 'Could not connect to the account service. Make sure the API is running with npm run api.'
@@ -494,7 +494,7 @@ document.querySelectorAll('.auth-form').forEach((form) => {
                 sessionStorage.removeItem('guestToken')
                 sessionStorage.removeItem('guestName')
                 sessionStorage.removeItem('guestEmail')
-                window.location.assign('./login.html#login')
+                window.location.assign('./login.php#login')
             } catch (error) {
                 const message = error instanceof TypeError
                     ? 'Could not connect to the account service. Make sure the API is running with npm run api.'
@@ -545,7 +545,7 @@ document.querySelectorAll('.auth-form').forEach((form) => {
         })
 
         if (!guestToken) {
-            window.location.assign('./login.html#login')
+            window.location.assign('./login.php#login')
         } else {
             fetch(`${API_BASE_URL}/auth/guest-session`, {
                 headers: { Authorization: `Bearer ${guestToken}` },
@@ -555,7 +555,7 @@ document.querySelectorAll('.auth-form').forEach((form) => {
                         sessionStorage.removeItem('guestToken')
                         sessionStorage.removeItem('guestName')
                         sessionStorage.removeItem('guestEmail')
-                        window.location.assign('./login.html#login')
+                        window.location.assign('./login.php#login')
                         return null
                     }
                     if (!response.ok) throw new Error('Could not verify your guest account. Please try again.')
@@ -658,7 +658,7 @@ document.querySelectorAll('.auth-form').forEach((form) => {
                                 sessionStorage.removeItem('guestToken')
                                 sessionStorage.removeItem('guestName')
                                 sessionStorage.removeItem('guestEmail')
-                                window.location.assign('./login.html#login')
+                                window.location.assign('./login.php#login')
                                 return
                             }
                             if (!response.ok) throw new Error(result.error || 'Could not save your request.')
@@ -845,7 +845,7 @@ if (document.querySelector('#profile-edit-form')) {
                     sessionStorage.removeItem('guestToken')
                     sessionStorage.removeItem('guestName')
                     sessionStorage.removeItem('guestEmail')
-                    window.location.assign('./login.html#login')
+                    window.location.assign('./login.php#login')
                     return
                 }
                 const result = await response.json()
@@ -916,7 +916,7 @@ if (document.querySelector('#profile-edit-form')) {
         $('#profile-password-open').addEventListener('click', () => passwordDialog.showModal())
         $('#password-warning-cancel').addEventListener('click', () => passwordDialog.close())
         $('#password-warning-confirm').addEventListener('click', () => {
-            window.location.assign('./ForgotPassword.html')
+            window.location.assign('./ForgotPassword.php')
         })
 
         // Revoke the server session when the guest confirms logout.
@@ -941,7 +941,7 @@ if (document.querySelector('#profile-edit-form')) {
                 sessionStorage.removeItem('guestToken')
                 sessionStorage.removeItem('guestName')
                 sessionStorage.removeItem('guestEmail')
-                window.location.assign('./index.html')
+                window.location.assign('./index.php')
             } catch (error) {
                 logoutStatus.textContent = error instanceof TypeError
                     ? 'Could not connect to the account service. Make sure the API is running with npm run api.'
@@ -956,7 +956,7 @@ if (document.querySelector('#profile-edit-form')) {
         const loadProfile = async () => {
             const token = sessionStorage.getItem('guestToken')
             if (!token) {
-                window.location.assign('./login.html#login')
+                window.location.assign('./login.php#login')
                 return
             }
 
@@ -968,7 +968,7 @@ if (document.querySelector('#profile-edit-form')) {
                     sessionStorage.removeItem('guestToken')
                     sessionStorage.removeItem('guestName')
                     sessionStorage.removeItem('guestEmail')
-                    window.location.assign('./login.html#login')
+                    window.location.assign('./login.php#login')
                     return
                 }
                 const result = await response.json()
