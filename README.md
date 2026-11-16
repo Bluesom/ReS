@@ -1,157 +1,99 @@
-# ReS — Reservation Synchronization
+# ReS — Hotel Reservation
 
-ReS adalah aplikasi reservasi hotel yang membantu tamu melihat informasi kamar
-dan penawaran, membuat permintaan pemesanan, serta mengelola profil. Aplikasi
-ini juga menyediakan dashboard administrator untuk mengelola kamar, tipe kamar,
-booking, tamu, dan penawaran.
+ReS is a hotel reservation app for guests and administrators. The Laravel 10
+application is in `ProjectPW/`; it uses MySQL for local development and Vite for
+frontend assets.
 
-Versi Laravel berada di folder `temp-laravel/`. Aplikasi memakai Laravel 10,
-PHP 8.1 atau lebih baru, MySQL sebagai database default, serta Vite untuk
-membangun aset CSS dan JavaScript. Data awal hasil migrasi berada di
-`temp-laravel/database/seeders/data/db.json`.
+## Features
 
-## Fitur
+- Browse hotel information, room types, and offers.
+- Register, sign in, manage a guest profile, and request bookings.
+- Administer rooms, room types, guests, bookings, and offers.
+- Import the bundled legacy sample data into the Laravel database.
 
-- Halaman beranda, login, registrasi, profil, pemesanan, dan dashboard admin.
-- Registrasi/login tamu dan login admin melalui API Laravel.
-- Autentikasi API menggunakan Laravel Sanctum dengan masa berlaku token dua jam.
-- Pembuatan permintaan booking oleh tamu.
-- Pengelolaan booking, kamar, tipe kamar, tamu, penawaran, dan gambar oleh admin.
-- Impor data dan akun lama dari JSON ke database Laravel.
+## Requirements
 
-## Persyaratan
+- PHP 8.1 or newer with `pdo_mysql`, `pdo_sqlite`, `mbstring`, `openssl`, and
+  `fileinfo`.
+- Composer 2.
+- MySQL 8 or a compatible MariaDB server.
+- Node.js 20 LTS (or newer) and npm.
 
-- PHP 8.1 atau lebih baru dengan ekstensi yang dibutuhkan Laravel, termasuk PDO
-  untuk database yang dipilih, `mbstring`, `openssl`, `fileinfo`, dan `intl`.
-- Composer.
-- MySQL/MariaDB yang berjalan (konfigurasi default), atau database lain yang
-  didukung Laravel setelah konfigurasi `.env` disesuaikan.
-- Node.js dan npm untuk memasang serta membangun aset frontend.
+## Quick start (Windows / PowerShell)
 
-## Menjalankan aplikasi di Windows
-
-Buka PowerShell pada root repository, lalu pindah ke folder Laravel:
+From the repository root:
 
 ```powershell
-cd .\temp-laravel
-```
-
-### 1. Pasang dependency PHP dan JavaScript
-
-```powershell
+cd .\ProjectPW
 composer install
-npm install
-```
-
-### 2. Siapkan konfigurasi aplikasi
-
-Jika file `.env` belum ada:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-Buat application key:
-
-```powershell
+npm ci
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 php artisan key:generate
 ```
 
-### 3. Siapkan database
+Start MySQL and create the database configured in `.env.example` (`laravel`):
 
-Secara default Laravel menggunakan MySQL di `127.0.0.1:3306`, dengan nama
-database `laravel`, user `root`, dan password kosong. Pastikan server MySQL
-berjalan dan buat database `laravel` terlebih dahulu, atau ubah nilai
-`DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD` di `.env`
-agar sesuai dengan komputer Anda.
-
-Kemudian buat tabel dan impor data awal:
-
-```powershell
-php artisan migrate
-php artisan db:seed
+```sql
+CREATE DATABASE laravel CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Seeder pada environment `local` atau `testing` mengimpor akun, profil tamu,
-admin, kamar, tipe kamar, booking, dan penawaran dari
-`database/seeders/data/db.json`. Importer dirancang agar dapat dijalankan ulang
-tanpa menghapus atau menimpa data dengan source ID yang sudah ada. Perintah
-impor juga dapat dijalankan secara langsung:
+Update `.env` if your MySQL host, database name, username, or password differs
+from the example. Then migrate and load the local demo data:
 
 ```powershell
-php artisan app:import-legacy-json
+php artisan migrate --seed
 ```
 
-Untuk memakai file JSON lain, berikan path sebagai argumen:
-
-```powershell
-php artisan app:import-legacy-json "C:\path\ke\db.json"
-```
-
-### 4. Bangun aset frontend
-
-Untuk penggunaan biasa:
-
-```powershell
-npm run build
-```
-
-Saat mengembangkan frontend, jalankan Vite dalam terminal terpisah:
+Run the app in two terminals from `ProjectPW`. In the first:
 
 ```powershell
 npm run dev
 ```
 
-### 5. Jalankan server Laravel
+In the second:
 
 ```powershell
 php artisan serve
 ```
 
-Buka alamat yang ditampilkan Artisan, biasanya <http://127.0.0.1:8000>.
-Untuk menghentikan server, tekan `Ctrl+C` di terminalnya.
+Open the URL printed by Artisan, usually <http://127.0.0.1:8000>. For a
+production-style frontend build, use `npm run build` instead of `npm run dev`.
 
-## Akun demo
+## Tests and CI
 
-Data akun diimpor dari `temp-laravel/database/seeders/data/db.json` ke tabel
-database Laravel; akun tidak disimpan sebagai kode aplikasi.
-
-- Admin: `admin@example.com` / `Admin123!`
-- Tamu: `jackmahardi@gmail.com` / gunakan password yang ditetapkan saat akun
-  tersebut dibuat. Password asli tidak tersedia di JSON karena hanya hash
-  password yang disimpan.
-
-Jangan gunakan akun atau password demo pada lingkungan produksi. Jika login
-gagal, pastikan MySQL berjalan, database pada `.env` benar, lalu jalankan
-migrasi dan seeder dari folder `temp-laravel`.
-
-## Lokasi data
-
-- `users`: nama, email, role, dan hash password.
-- `guest_profiles`: nomor tamu, negara, nomor telepon, serta status tamu.
-- Data lain seperti rooms, room types, bookings, dan offers disimpan pada tabel
-  dengan nama yang sama di database.
-
-Password tidak disimpan dalam bentuk teks biasa. Pada login pertama akun yang
-diimpor dari JSON, hash legacy diverifikasi lalu diubah ke format hash Laravel.
-
-## Pengujian
-
-Jalankan dari `temp-laravel`:
+Tests use an isolated in-memory SQLite database by default, so running them
+does not touch your local MySQL data:
 
 ```powershell
 php artisan test
 ```
 
-Tes yang menggunakan database membutuhkan koneksi ke database yang berfungsi.
+GitHub Actions also runs the test suite against MySQL 8 and verifies the
+frontend production build on pushes and pull requests.
 
-## Struktur repository
+## Sample data
 
-- `temp-laravel/`: aplikasi Laravel yang dijalankan.
-- `ProjectPW/`: folder aplikasi MVC lama; Laravel tidak lagi membutuhkan folder
-  ini untuk menjalankan aplikasi karena JSON sumber sudah disalin ke dalam
-  proyek Laravel.
-- `.github/modernize/rearchitecture/`: artefak kerja proses analisis dan
-  modernisasi, seperti spesifikasi, catatan arsitektur, log tim, dan learning.
-  Folder ini bukan kode runtime Laravel dan tidak diperlukan ketika menjalankan
-  aplikasi.
+In `local` and `testing` environments, `php artisan db:seed` imports the bundled
+data from `ProjectPW/database/seeders/data/db.json`. The importer can be run
+again safely; it does not overwrite existing records with matching source IDs.
+
+The local demo admin is `admin@example.com` / `Admin123!`. Demo credentials are
+for local development only and must never be used in production.
+
+## Team notes
+
+- Do not commit `.env`, database credentials, or generated secrets.
+- `composer.lock` and `package-lock.json` are committed; use `composer install`
+  and `npm ci` so every teammate gets the locked dependency versions.
+- The Laravel application is under `ProjectPW/`; this root README is the
+  canonical setup guide.
+
+## Troubleshooting
+
+- `php artisan test` is not recognized: install all Composer dependencies with
+  `composer install` (do not use `--no-dev` for development).
+- `vite` is not recognized: run `npm ci` from `ProjectPW/`.
+- `No application encryption key`: run `php artisan key:generate`.
+- `Unknown database` or `Access denied`: start MySQL and check the `DB_*` values
+  in your local `.env`.
+- Do not commit `.env`; it contains machine-specific settings and secrets.

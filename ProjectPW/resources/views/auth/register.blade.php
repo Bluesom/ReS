@@ -32,7 +32,7 @@
 		<!-- Guest account registration -->
 		<main class="flex min-h-svh items-center justify-center bg-mist px-5 pb-8 pt-24 sm:px-8">
 			<div class="mx-auto grid max-w-5xl overflow-hidden rounded-sm bg-white shadow-xl md:grid-cols-[0.9fr_1.1fr]">
-				<section class="auth-visual auth-visual-register flex flex-col justify-between p-8 text-white sm:p-12">
+				<section class="auth-visual auth-visual-register flex flex-col justify-between p-8 text-white sm:p-12" style="--auth-background-image: url('{{ asset('assets/destination-tre-cime.jpg') }}')">
 					<div>
 						<p class="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-sun">A warm welcome</p>
 						<h1 class="font-display text-4xl font-semibold leading-tight sm:text-5xl">Make room for the mountains.</h1>

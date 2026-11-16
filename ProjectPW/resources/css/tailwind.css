@@ -40,13 +40,13 @@ body {
 .hero-shell {
     background-image:
         radial-gradient(ellipse at left bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 45%, rgba(0, 0, 0, 0.08) 100%),
-        url("/assets/906353463.jpg");
+        var(--hero-background-image);
 }
 
 .booking-hero {
     background-image:
         linear-gradient(90deg, rgba(21, 45, 38, 0.82), rgba(21, 45, 38, 0.28)),
-        url("/assets/destination-alpe-siusi.jpg");
+        var(--booking-background-image);
     background-position: center 45%;
     background-size: cover;
 }
@@ -69,11 +69,11 @@ body {
 }
 
 .auth-visual-login {
-    background-image: url("/assets/906353463.jpg");
+    background-image: var(--auth-background-image);
 }
 
 .auth-visual-register {
-    background-image: url("/assets/destination-tre-cime.jpg");
+    background-image: var(--auth-background-image);
 }
 
 /* Shared navigation and account controls */
@@ -507,7 +507,7 @@ body {
 .profile-banner {
     background-image:
         linear-gradient(180deg, rgba(21, 45, 38, 0.55) 0%, rgba(21, 45, 38, 0.85) 100%),
-        url("/assets/906353463.jpg");
+        var(--profile-background-image);
     background-position: center;
     background-size: cover;
     background-color: #28483c;

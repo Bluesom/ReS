@@ -14,7 +14,7 @@
 
     <body class="bg-paper font-sans text-ink antialiased">
         <main>
-            <header class="hero-shell relative flex min-h-svh flex-col overflow-hidden bg-cover bg-center text-paper">
+            <header class="hero-shell relative flex min-h-svh flex-col overflow-hidden bg-cover bg-center text-paper" style="--hero-background-image: url('{{ asset('assets/906353463.jpg') }}')">
                 <!-- Site navigation -->
                 <nav class="fixed inset-x-0 top-0 z-50 h-20 bg-transparent transition-all duration-300" id="navbar">
                     <div class="container mx-auto flex h-full w-[min(90%,1280px)] items-center justify-between">

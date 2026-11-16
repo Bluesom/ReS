@@ -31,7 +31,7 @@
 
 		<main class="min-h-svh pt-20" aria-label="Booking page">
 			<!-- Booking page introduction -->
-			<section class="booking-hero py-16 text-white sm:py-24">
+			<section class="booking-hero py-16 text-white sm:py-24" style="--booking-background-image: url('{{ asset('assets/destination-alpe-siusi.jpg') }}')">
 				<div class="container mx-auto w-[min(90%,1120px)]">
 					<p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-sun">Your alpine escape starts here</p>
 					<h1 class="font-display text-5xl font-semibold leading-none text-white sm:text-7xl">Plan your stay</h1>

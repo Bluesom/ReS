@@ -31,7 +31,7 @@
 
 		<main class="min-h-svh pt-20" aria-label="User profile">
 			<!-- Profile header -->
-			<section class="profile-banner py-16 text-white sm:py-24">
+			<section class="profile-banner py-16 text-white sm:py-24" style="--profile-background-image: url('{{ asset('assets/906353463.jpg') }}')">
 				<div class="container mx-auto flex w-[min(90%,1120px)] flex-col gap-8 md:flex-row md:items-center md:justify-between">
 					<div class="flex items-center gap-5">
 						<span class="grid size-20 shrink-0 place-items-center rounded-full bg-forest font-display text-2xl font-semibold text-white ring-4 ring-white/70 sm:size-24 sm:text-3xl" id="profile-avatar" aria-hidden="true">…</span>
