@@ -11,6 +11,7 @@ use App\Models\RoomType;
 use App\Models\User;
 use App\Services\AccountService;
 use App\Services\HotelDomainService;
+use App\Services\JwtService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 class HotelApiController extends Controller
 {
     private const COUNTRY_CODES = 'AD AE AF AG AI AL AM AO AQ AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BV BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FM FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GS GT GU GW GY HK HM HN HR HT HU ID IE IL IM IN IO IQ IR IS IT JE JM JO JP KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TF TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG UM US UY UZ VA VC VE VG VI VN VU WF WS YE YT ZA ZM ZW';
+
     private const DIAL_CODES = [
         'AU' => '61', 'BR' => '55', 'CA' => '1', 'CN' => '86', 'DE' => '49',
         'ES' => '34', 'FR' => '33', 'GB' => '44', 'ID' => '62', 'IN' => '91',
@@ -70,7 +72,7 @@ class HotelApiController extends Controller
     public function offers(Request $request)
     {
         if ($request->query('admin') === 'true') {
-            $admin = Auth::guard('sanctum')->user();
+            $admin = $request->user();
             if (!$admin || $admin->role !== 'admin') {
                 return response()->json(['error' => 'An administrator must log in to access this data.'], 401);
             }
@@ -98,7 +100,7 @@ class HotelApiController extends Controller
             return response()->json(['error' => 'Email or password is incorrect.'], 401);
         }
 
-        $token = $user->createToken('api', ['*'], now()->addHours(2))->plainTextToken;
+        $token = app(JwtService::class)->issue($user);
         $account = $user->role === 'admin'
             ? [
                 'id' => $user->source_id,
@@ -113,7 +115,13 @@ class HotelApiController extends Controller
                 'email' => $user->email,
             ];
 
-        return response()->json(['token' => $token, 'role' => $user->role, 'account' => $account]);
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'token' => $token,
+            'role' => $user->role,
+            'account' => $account,
+        ]);
     }
 
     public function adminSession(Request $request)
@@ -471,7 +479,7 @@ class HotelApiController extends Controller
             }
         });
         if (($profileUpdates['active'] ?? null) === false) {
-            $guest->user->tokens()->delete();
+            app(JwtService::class)->revokeAll($guest->user);
             Auth::forgetGuards();
         }
         return response()->json($this->guestData($guest->fresh()->load('user')));
@@ -484,7 +492,7 @@ class HotelApiController extends Controller
             return response()->json(['error' => 'Guest not found.'], 404);
         }
         $guest->update(['active' => false]);
-        $guest->user->tokens()->delete();
+        app(JwtService::class)->revokeAll($guest->user);
         Auth::forgetGuards();
         return response()->json($this->guestData($guest->fresh()->load('user')));
     }

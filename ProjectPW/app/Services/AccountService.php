@@ -73,7 +73,7 @@ class AccountService
                 'password_scheme' => 'laravel',
                 'legacy_password_salt' => null,
             ])->save();
-            $user->tokens()->delete();
+            app(JwtService::class)->revokeAll($user);
         });
 
         Auth::forgetGuards();
@@ -81,7 +81,10 @@ class AccountService
 
     public function logout(Request $request): void
     {
-        $request->user()->currentAccessToken()?->delete();
+        $jti = $request->attributes->get('jwt_jti');
+        if (is_string($jti)) {
+            app(JwtService::class)->revoke($jti);
+        }
         Auth::forgetGuards();
     }
 

@@ -8,6 +8,8 @@ frontend assets.
 
 - Browse hotel information, room types, and offers.
 - Register, sign in, manage a guest profile, and request bookings.
+- Authenticate API requests with signed JWT bearer tokens (two-hour expiry, with server-side logout and revocation).
+- Manage the sample Programs API with JWT-protected CRUD endpoints.
 - Administer rooms, room types, guests, bookings, and offers.
 - Import the bundled legacy sample data into the Laravel database.
 
@@ -67,6 +69,11 @@ does not touch your local MySQL data:
 ```powershell
 php artisan test
 ```
+
+For JWT API testing, `POST /api/login` with an account email and password to
+receive an `access_token`. Send it as `Authorization: Bearer <access_token>` to
+the protected `/api/programs` endpoints (`GET`, `POST`, `PUT /{id}`, `DELETE /{id}`).
+The local/testing seed includes `Program A` as a sample record.
 
 GitHub Actions also runs the test suite against MySQL 8 and verifies the
 frontend production build on pushes and pull requests.

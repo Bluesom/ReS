@@ -3,19 +3,25 @@
 namespace Tests\Feature;
 
 use App\Models\Booking;
-use App\Models\GuestProfile;
+use App\Models\JwtToken;
 use App\Models\Offer;
 use App\Models\Room;
 use App\Models\RoomType;
 use App\Models\User;
+use App\Services\JwtService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class HotelApiTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        config(['app.key' => str_repeat('test-signing-key-', 3)]);
+    }
 
     public function test_admin_routes_preserve_occupied_room_status_and_require_admin_authentication(): void
     {
@@ -28,8 +34,9 @@ class HotelApiTest extends TestCase
             'status' => 'occupied',
         ]);
         $admin = $this->admin();
-        $token = $admin->createToken('test', ['*'], now()->addHours(2))->plainTextToken;
+        $token = $this->jwtToken($admin);
 
+        $this->getJson('/api/offers')->assertOk();
         $this->getJson('/api/rooms')->assertUnauthorized();
         $this->withToken($token)->getJson('/api/rooms')
             ->assertOk()
@@ -39,6 +46,84 @@ class HotelApiTest extends TestCase
             ->assertOk()
             ->assertJsonPath('adminNumber', 'ADM-001');
         $this->withToken($token)->getJson('/api/offers?admin=true')->assertOk();
+    }
+
+    public function test_api_rejects_malformed_and_tampered_jwt_signatures(): void
+    {
+        $token = $this->jwtToken($this->admin());
+        $parts = explode('.', $token);
+
+        $this->assertCount(3, $parts);
+        $this->withToken('not.a.jwt')->getJson('/api/auth/admin-session')->assertUnauthorized();
+        $this->withToken($parts[0].'.'.$parts[1].'.'.str_repeat('A', strlen($parts[2])))
+            ->getJson('/api/auth/admin-session')
+            ->assertUnauthorized()
+            ->assertJsonPath('message', 'Token is invalid.');
+    }
+
+    public function test_login_alias_returns_bearer_jwt_fields(): void
+    {
+        $admin = $this->admin();
+
+        $response = $this->postJson('/api/login', [
+            'email' => $admin->email,
+            'password' => 'Password1',
+        ])->assertOk()
+            ->assertJsonPath('token_type', 'bearer');
+
+        $token = $response->json('access_token');
+        $this->assertIsString($token);
+        $this->assertCount(3, explode('.', $token));
+        $this->assertSame($token, $response->json('token'));
+        $this->withToken($token)->getJson('/api/auth/admin-session')->assertOk();
+    }
+
+    public function test_login_alias_rejects_an_unknown_account_and_wrong_password(): void
+    {
+        $admin = $this->admin();
+
+        $this->postJson('/api/login', [
+            'email' => $admin->email,
+            'password' => 'WrongPassword1',
+        ])->assertUnauthorized();
+        $this->postJson('/api/login', [
+            'email' => 'missing@example.test',
+            'password' => 'Password1',
+        ])->assertUnauthorized();
+    }
+
+    public function test_program_crud_requires_a_valid_jwt(): void
+    {
+        $this->getJson('/api/programs')->assertUnauthorized()
+            ->assertJsonPath('message', 'Unauthenticated.');
+        $this->withToken('invalid')->getJson('/api/programs')->assertUnauthorized()
+            ->assertJsonPath('message', 'Token is invalid.');
+
+        $admin = $this->admin();
+        $login = $this->postJson('/api/login', [
+            'email' => $admin->email,
+            'password' => 'Password1',
+        ])->assertOk();
+        $token = $login->json('access_token');
+        $this->withToken($token)->getJson('/api/programs')->assertOk()
+            ->assertJsonPath('data', []);
+
+        $created = $this->withToken($token)->postJson('/api/programs', [
+            'name' => 'Program A',
+        ])->assertCreated()
+            ->assertJsonPath('data.name', 'Program A');
+        $programId = $created->json('data.id');
+        $this->assertDatabaseHas('programs', ['id' => $programId, 'name' => 'Program A']);
+
+        $this->withToken($token)->getJson('/api/programs')->assertOk()
+            ->assertJsonPath('data.0.id', $programId);
+        $this->withToken($token)->putJson('/api/programs/'.$programId, [
+            'name' => 'Program B',
+        ])->assertOk()
+            ->assertJsonPath('data.name', 'Program B');
+        $this->withToken($token)->deleteJson('/api/programs/'.$programId)->assertOk()
+            ->assertJsonPath('message', 'Program deleted.');
+        $this->assertDatabaseMissing('programs', ['id' => $programId]);
     }
 
     public function test_guest_can_create_a_pending_booking_with_source_compatible_shape(): void
@@ -57,7 +142,7 @@ class HotelApiTest extends TestCase
             'country' => 'Indonesia',
             'phone' => '+628123456789',
         ]);
-        $token = $guest->createToken('test', ['*'], now()->addHours(2))->plainTextToken;
+        $token = $this->jwtToken($guest);
         $checkIn = now('UTC')->addDays(5)->toDateString();
         $checkOut = now('UTC')->addDays(7)->toDateString();
 
@@ -80,7 +165,8 @@ class HotelApiTest extends TestCase
     public function test_password_reset_revokes_every_token_for_the_account(): void
     {
         $admin = $this->admin();
-        $token = $admin->createToken('admin-browser', ['*'], now()->addHours(2))->plainTextToken;
+        $token = $this->jwtToken($admin);
+        $secondToken = $this->jwtToken($admin);
 
         $this->postJson('/api/auth/reset-password', [
             'email' => $admin->email,
@@ -89,7 +175,8 @@ class HotelApiTest extends TestCase
         ])->assertOk();
 
         $this->withToken($token)->getJson('/api/auth/admin-session')->assertUnauthorized();
-        $this->assertSame(0, $admin->tokens()->count());
+        $this->withToken($secondToken)->getJson('/api/auth/admin-session')->assertUnauthorized();
+        $this->assertSame(0, JwtToken::query()->where('user_id', $admin->id)->count());
     }
 
     public function test_registration_and_logout_use_same_origin_bearer_authentication(): void
@@ -110,6 +197,7 @@ class HotelApiTest extends TestCase
             'password' => 'Password1',
         ])->assertOk()->assertJsonPath('role', 'guest');
         $token = $login->json('token');
+        $this->assertCount(3, explode('.', $token));
 
         $this->withToken($token)->getJson('/api/auth/guest-session')
             ->assertOk()
@@ -119,10 +207,10 @@ class HotelApiTest extends TestCase
         $this->withToken($token)->getJson('/api/auth/guest-session')->assertUnauthorized();
     }
 
-    public function test_api_tokens_expire_after_two_hours(): void
+    public function test_jwt_tokens_expire_after_two_hours(): void
     {
         $admin = $this->admin();
-        $token = $admin->createToken('test', ['*'], now()->addHours(2))->plainTextToken;
+        $token = $this->jwtToken($admin);
 
         $this->travel(121)->minutes();
         $this->withToken($token)->getJson('/api/auth/admin-session')->assertUnauthorized();
@@ -201,7 +289,7 @@ class HotelApiTest extends TestCase
             'end_date' => $checkOut,
             'active' => true,
         ]);
-        $token = $this->admin()->createToken('test', ['*'], now()->addHours(2))->plainTextToken;
+        $token = $this->jwtToken($this->admin());
 
         $this->withToken($token)->patchJson('/api/bookings/B-200', [
             'status' => 'confirmed',
@@ -235,8 +323,8 @@ class HotelApiTest extends TestCase
             'country' => 'United States',
             'phone' => '+14155552671',
         ]);
-        $guestToken = $guest->createToken('guest-device', ['*'], now()->addHours(2))->plainTextToken;
-        $adminToken = $this->admin()->createToken('admin-device', ['*'], now()->addHours(2))->plainTextToken;
+        $guestToken = $this->jwtToken($guest);
+        $adminToken = $this->jwtToken($this->admin());
 
         $this->withToken($adminToken)->patchJson('/api/guests/G-300', [
             'name' => 'Updated Guest',
@@ -333,7 +421,13 @@ class HotelApiTest extends TestCase
             'password_scheme' => 'laravel',
         ]);
         $admin->adminProfile()->create(['admin_number' => 'ADM-001']);
+
         return $admin;
+    }
+
+    private function jwtToken(User $user): string
+    {
+        return app(JwtService::class)->issue($user);
     }
 
     private function roomType(): RoomType

@@ -1,21 +1,23 @@
 <?php
 
 use App\Http\Controllers\Api\HotelApiController;
+use App\Http\Controllers\Api\ProgramApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/metadata/countries', [HotelApiController::class, 'countries']);
 Route::get('/metadata/room-types', [HotelApiController::class, 'roomTypeMetadata']);
-Route::get('/offers', [HotelApiController::class, 'offers']);
+Route::get('/offers', [HotelApiController::class, 'offers'])->middleware('jwt:optional');
 
 Route::post('/auth/login', [HotelApiController::class, 'login'])->middleware('throttle:10,1');
+Route::post('/login', [HotelApiController::class, 'login'])->middleware('throttle:10,1');
 Route::post('/auth/register', [HotelApiController::class, 'register'])->middleware('throttle:5,1');
 Route::post('/auth/reset-password', [HotelApiController::class, 'resetPassword'])->middleware('throttle:5,1');
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('jwt')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth:sanctum', 'role:guest'])->group(function () {
+Route::middleware(['jwt', 'role:guest'])->group(function () {
     Route::get('/auth/guest-session', [HotelApiController::class, 'guestSession']);
     Route::get('/auth/guest-profile', [HotelApiController::class, 'guestProfile']);
     Route::patch('/auth/guest-profile', [HotelApiController::class, 'updateGuestProfile']);
@@ -23,7 +25,7 @@ Route::middleware(['auth:sanctum', 'role:guest'])->group(function () {
     Route::post('/auth/logout', [HotelApiController::class, 'logout']);
 });
 
-Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+Route::middleware(['jwt', 'role:admin'])->group(function () {
     Route::get('/auth/admin-session', [HotelApiController::class, 'adminSession']);
     Route::post('/auth/admin-logout', [HotelApiController::class, 'logout']);
 
@@ -48,4 +50,11 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::delete('/offers/{id}', [HotelApiController::class, 'deleteOffer']);
     Route::post('/uploads/image', [HotelApiController::class, 'uploadImage']);
 
+});
+
+Route::middleware('jwt')->group(function () {
+    Route::get('/programs', [ProgramApiController::class, 'index']);
+    Route::post('/programs', [ProgramApiController::class, 'store']);
+    Route::put('/programs/{program}', [ProgramApiController::class, 'update']);
+    Route::delete('/programs/{program}', [ProgramApiController::class, 'destroy']);
 });

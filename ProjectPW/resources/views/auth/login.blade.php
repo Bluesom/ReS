@@ -58,7 +58,10 @@
 								</button>
 							</div>
 						</div>
-						<button class="mt-1 inline-flex items-center justify-center gap-3 rounded-full bg-forest px-5 py-3 font-semibold text-white transition hover:bg-clay focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay" type="submit">Log in <i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i></button>
+						<button class="mt-1 inline-flex items-center justify-center gap-3 rounded-full bg-forest px-5 py-3 font-semibold text-white transition hover:bg-clay focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay" type="submit">
+							<span data-login-label>Log in</span>
+							<i class="fa-solid fa-arrow-right-to-bracket" data-login-icon aria-hidden="true"></i>
+						</button>
 						<p class="hidden rounded-sm border border-lake/30 bg-mist p-4 text-sm leading-6 text-forest" role="status" aria-live="polite"></p>
 						<p class="pt-2 text-center text-sm text-ink/75"><a class="font-semibold text-forest underline decoration-clay underline-offset-4 transition hover:text-clay" href="{{ url('/forgot-password') }}">Forgot password?</a></p>
 						<p class="pt-2 text-center text-sm text-ink/75">New here? <a class="font-semibold text-forest underline decoration-clay underline-offset-4 transition hover:text-clay" href="{{ url('/register') }}">Create an account</a>.</p>

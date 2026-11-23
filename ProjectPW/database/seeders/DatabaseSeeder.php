@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Program;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        if (!app()->environment(['local', 'testing'])) {
+        if (! app()->environment(['local', 'testing'])) {
             return;
         }
 
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
             throw new RuntimeException(Artisan::output());
         }
 
+        Program::query()->firstOrCreate(['name' => 'Program A']);
     }
 }

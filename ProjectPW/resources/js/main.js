@@ -295,6 +295,8 @@ document.querySelectorAll('.auth-form').forEach((form) => {
     if (loginForm) {
         const loginStatus = loginForm.querySelector('[role="status"]')
         const loginButton = loginForm.querySelector('button[type="submit"]')
+        const loginButtonLabel = loginButton.querySelector('[data-login-label]')
+        const loginButtonIcon = loginButton.querySelector('[data-login-icon]')
         const registrationSuccess = sessionStorage.getItem('registrationSuccess')
         const passwordResetSuccess = sessionStorage.getItem('passwordResetSuccess')
 
@@ -307,8 +309,14 @@ document.querySelectorAll('.auth-form').forEach((form) => {
 
         loginForm.addEventListener('submit', async (event) => {
             event.preventDefault()
+            if (loginButton.disabled) return
+
             loginStatus.classList.add('hidden')
             loginButton.disabled = true
+            loginButton.setAttribute('aria-busy', 'true')
+            loginButtonLabel.textContent = 'Signing in...'
+            loginButtonIcon.classList.replace('fa-arrow-right-to-bracket', 'fa-spinner')
+            loginButtonIcon.classList.add('fa-spin')
 
             try {
                 const response = await apiFetch(`${API_BASE_URL}/auth/login`, {
@@ -346,6 +354,10 @@ document.querySelectorAll('.auth-form').forEach((form) => {
                 loginStatus.classList.add('border-clay/30', 'bg-clay/10', 'text-clay')
             } finally {
                 loginButton.disabled = false
+                loginButton.removeAttribute('aria-busy')
+                loginButtonLabel.textContent = 'Log in'
+                loginButtonIcon.classList.remove('fa-spinner', 'fa-spin')
+                loginButtonIcon.classList.add('fa-arrow-right-to-bracket')
             }
         })
     }
